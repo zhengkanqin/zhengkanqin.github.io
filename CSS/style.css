@@ -26,7 +26,9 @@
     padding-bottom: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
+    font-size: 1em;
 }
 .navigation div:hover{
     background-color: #1c2631;
@@ -37,8 +39,8 @@
     justify-content: center;
 }
 .navigationicon{
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
     margin-right: 10px;
 }
 
@@ -62,14 +64,14 @@
     position: relative;
 }
 .returntop{
-    width: 70px;
-    height: 70px;
+    width: clamp(1rem, 10vw, 4rem);
+    height: clamp(1rem, 10vw, 4rem);
     background-color: #2F4052;
     position: sticky;
     z-index: 100;
     top:85%;
     margin:50px;
-    margin-right:65px;
+    margin-right:3vw;
     box-shadow: 20px 10px 40px rgba(111, 196, 219, 0.244);
     border-radius: 45px;
     display: flex;
