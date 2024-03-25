@@ -12,7 +12,6 @@
     border-bottom: 5px solid #868080; 
     position:sticky;
     z-index: 100;
-
     top:0px;
     display: flex;
     justify-content:space-evenly
@@ -61,7 +60,9 @@
 }
 
 .webbody{
-    position: relative;
+
+    width: 100%;
+    z-index: -1;
 }
 .returntop{
     width: clamp(1rem, 10vw, 4rem);
@@ -104,7 +105,11 @@
 
 
 
-
+.decorationBackground{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
 
 
 .decoration1{
@@ -114,7 +119,7 @@
     bottom:180px;
     right:180px;
     border-radius: 41% 59% 40% 60% /65% 66% 34% 35%;
-    position:fixed;
+
     z-index: 1;
 
 }
@@ -122,14 +127,14 @@
     background:radial-gradient(chocolate,#242424,transparent);
     width:400px;
     height:400px;
-    position:fixed;
+
     bottom:80px;
     right:80px;
     z-index: 1;
 } 
 
 .decoration4{
-   position:fixed;
+
    top: 50%; 
    left: 50%;
    transform: translate(-50%, -50%);

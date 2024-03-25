@@ -5,4 +5,12 @@
     padding-bottom: 25px;
     padding-top:1px;
     min-height: 100vh;
+    display: flex;
+}
+.toolBox1{
+    width: clamp(200px, 100%, 400px);
+    height: clamp(100px, 100%, 200px);
+    background-color: rgb(36, 113, 113);
+    z-index: 15;
+    
 }

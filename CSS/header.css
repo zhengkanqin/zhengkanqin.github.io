@@ -1,8 +1,7 @@
 .header{
-    position: relative; 
     width:100%;
     height: 100px;
-    z-index: 15;
+    z-index: 100;
     background:linear-gradient(180deg,#B2B9BE,#2F4052);
     
 }
