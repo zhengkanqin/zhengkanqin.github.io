@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>前端学习笔记</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./html.css">
-    <link rel="stylesheet" href="./css.css">
-    <link rel="stylesheet" href="./js.css">
-    <link rel="stylesheet" href="./instance.css">
+    <link rel="stylesheet" href="./tool.css">
+    <link rel="stylesheet" href="./design.css">
+    <link rel="stylesheet" href="./case.css">
+    <link rel="stylesheet" href="./library.css">
     <link rel="stylesheet" href="box1.css">
     <link rel="stylesheet" href="header.css">
 </head>
@@ -33,22 +33,24 @@ onmouseup='document.selection.empty()'>
 
 
    <div class = "navigation">
-       <div data-tilt data-tilt-max="10" id="navigationhtml"><img class = "navigationicon" src = "src/HTML.png"></img>HTML</div>
-       <div data-tilt data-tilt-max="10" id="navigationcss"><img class = "navigationicon" src = "src/CSS.png"></img>CSS</div>
-       <div data-tilt data-tilt-max="10" id="navigationjs"><img class = "navigationicon" src = "src/JS.png"></img>JS</div>
-       <div data-tilt data-tilt-max="10" id="navigationinstance"><img class = "navigationicon" src = "src/instance.png"></img>instance</div>
+       <div data-tilt data-tilt-max="10" id="navigationTool"><img class = "navigationicon" src = "src/HTML.png"></img>工具</div>
+       <div data-tilt data-tilt-max="10" id="navigationDesign"><img class = "navigationicon" src = "src/CSS.png"></img>设计</div>
+       <div data-tilt data-tilt-max="10" id="navigationCase"><img class = "navigationicon" src = "src/JS.png"></img>案例</div>
+       <div data-tilt data-tilt-max="10" id="navigationLibrary"><img class = "navigationicon" src = "src/instance.png"></img>设库</div>
    </div>
 
- <!------------------------------------------------------->
 
 
+
+
+ <!------------------------------------------------------------------------------------>
 <div class ="webbody">
 
-<div class = "webbody-html" id="html">
+<div class = "webbody-tool" id="tool">
 
    <div class = "decoration1"></div>
       <div class = "decoration2"></div>
-      <p class = "decoration4">html</p>
+      <p class = "decoration4">Tools</p>
 
    <div class = "content1" data-tilt data-tilt-max="2">
       <p class ="contenttitle">待开发的html区</p>
@@ -56,16 +58,14 @@ onmouseup='document.selection.empty()'>
 
 </div>
 
-
 <!------------------------------------------------------->
-
-<div class = "webbody-css" id ="css">
+<div class = "webbody-design" id ="design">
    <div class ="returntopbackground"><div class= "returntop" id = "returntop"><img src="./src/top.png"></img></div></div>
  
 
       <div class = "decoration1"></div>
       <div class = "decoration2"></div>
-      <p class = "decoration4">CSS</p>
+      <p class = "decoration4">Design</p>
 
     <div class = "content1" data-tilt data-tilt-max="1">
         <p class ="contenttitle">overflow</p>
@@ -129,12 +129,11 @@ onmouseup='document.selection.empty()'>
 </div>
 
 <!------------------------------------------------------->
-
-<div class = "webbody-js" id ="js">
+<div class = "webbody-case" id ="case">
 
    <div class = "decoration1"></div>
       <div class = "decoration2"></div>
-      <p class = "decoration4">Js</p>
+      <p class = "decoration4">Cases</p>
 
    <div class = "content1" data-tilt data-tilt-max="2">
       <p class ="contenttitle">待开发的JS区</p>
@@ -142,16 +141,12 @@ onmouseup='document.selection.empty()'>
 
 </div>
 
-
 <!------------------------------------------------------->
-
-
-
-<div class = "webbody-instance" id ="instance">
+<div class = "webbody-library" id ="library">
 
    <div class = "decoration1"></div>
       <div class = "decoration2"></div>
-      <p class = "decoration4">inst</p>
+      <p class = "decoration4">Libs</p>
 
    <div class = "content1" data-tilt data-tilt-max="2">
       <p class ="contenttitle">待开发的instance区</p>
@@ -159,8 +154,7 @@ onmouseup='document.selection.empty()'>
 
 </div>
 
-
-<!------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------->
 
 </div>
 </div>
@@ -178,43 +172,43 @@ onmouseup='document.selection.empty()'>
    })
    
 
-let html = document.getElementById("html");
-let css = document.getElementById("css");
-let js = document.getElementById("js");
-let instance = document.getElementById("instance");
-let navigationhtml = document.getElementById("navigationhtml");
-let navigationcss = document.getElementById("navigationcss");
-let navigationjs = document.getElementById("navigationjs");
-let navigationinstance = document.getElementById("navigationinstance");
+let tool = document.getElementById("tool");
+let design = document.getElementById("design");
+let case1 = document.getElementById("case");
+let library = document.getElementById("library");
+let navigationTool = document.getElementById("navigationTool");
+let navigationDesign = document.getElementById("navigationDesign");
+let navigationCase = document.getElementById("navigationCase");
+let navigationLibrary = document.getElementById("navigationLibrary");
 let returntop = document.getElementById("returntop");
 
-navigationhtml.addEventListener("click", function() {
+navigationTool.addEventListener("click", function() {
     // 显示 HTML 部分，隐藏其他部分
-    html.style.display = "block";
-    css.style.display = "none";
-    js.style.display = "none";
-    instance.style.display = "none";
+    tool.style.display = "block";
+    design.style.display = "none";
+    case1.style.display = "none";
+    library.style.display = "none";
 });
-navigationcss.addEventListener("click", function() {
+navigationDesign.addEventListener("click", function() {
     // 显示 CSS 部分，隐藏其他部分
-    html.style.display = "none";
-    css.style.display = "block";
-    js.style.display = "none";
-    instance.style.display = "none";
+    tool.style.display = "none";
+    design.style.display = "block";
+    case1.style.display = "none";
+    library.style.display = "none";
 });
-navigationjs.addEventListener("click", function() {
+navigationCase.addEventListener("click", function() {
     // 显示 JavaScript 部分，隐藏其他部分
-    html.style.display = "none";
-    css.style.display = "none";
-    js.style.display = "block";
-    instance.style.display = "none";
+    tool.style.display = "none";
+    design.style.display = "none";
+    case1.style.display = "block";
+    library.style.display = "none";
 });
-navigationinstance.addEventListener("click", function() {
+navigationLibrary.addEventListener("click", function() {
     // 显示 Instance 部分，隐藏其他部分
-    html.style.display = "none";
-    css.style.display = "none";
-    js.style.display = "none";
-    instance.style.display = "block";
+    tool.style.display = "none";
+    design.style.display = "none";
+    case1.style.display = "none";
+    library.style.display = "block";
 });
 
 returntop.addEventListener("click", function() {
