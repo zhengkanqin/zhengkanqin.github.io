@@ -51,7 +51,7 @@
             </div>
             <div class = "centerBoxUseArea">
 
-                <div class = "centerBoxHeader" id = "centerBoxHeader">
+                <div class = "centerBoxHeader" id = "centerBoxHeader" data-tilt data-tilt-max="1">
                     <div class = "centerBoxHeaderWord" id = "centerBoxHeaderWord">
                         <!-- <div class ="leftquoteBox">
                             <div class ="leftquote">“</div>
@@ -64,7 +64,7 @@
                         </div> -->
                     </div>
                     <div class = "centerBoxHeaderTime">
-                        <div class = "timeBoxUserArea">
+                        <div class = "timeBoxUserArea" >
                             <div class = "timeBox1">08</div>
                         <div class = "timeBox2">29</div>
                         </div>
@@ -264,8 +264,8 @@
 <!-- ------------------------------------------------------------------- -->
                     </div>
                     <div class ="others">
-                        <div class = part1>
-                            <div class = "mySelf">
+                        <div class = "part1" data-tilt data-tilt-max="1">
+                            <div class = "mySelf" data-tilt data-tilt-max="5">
                                 <div class = "mySelfBackground">
                                     <img class = "mySelfImg" src ="./img/icon/jiyuan.jpg"></img>
                                     <div class = "mySelfName">汲渊</div>  
@@ -283,7 +283,7 @@
                                 </div>
                             </div>
                        </div>
-                       <div class = "part2" id = "toolPart2">
+                       <div class = "part2" id = "toolPart2" data-tilt data-tilt-max="1">
                             <div class = "tipBoxTitle">Your Plan</div>
                             <div class = "tipListBox">
                                 <div class ="tip">
@@ -307,10 +307,8 @@
     <div class = "footer" id = "footer">footer</div>
     <!-- 加载js -->
     <script src = "./js/cursor.js"></script>
-    <script>
-        iziToast.show({title: 'ZKQ，',message: 'Wellcome to Home',});
-    </script>
-    <!-- <script src = "./js/after.js"></script> -->
+    <script type="text/javascript" src="./js/vanilla-tilt.js"></script>
+    <script src = "./js/after.js"></script> 
 
 </body>
 

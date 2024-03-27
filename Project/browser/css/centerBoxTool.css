@@ -35,7 +35,7 @@
     justify-content:center;
     align-items: center;
     flex-wrap: wrap;
-    transition: all 0.5s;
+    transition: all 0.2s;
 
 }
 .shortCutBox:hover .shortCutBoxColor{
@@ -46,6 +46,10 @@
 }
 .shortCutBox:hover{
     transform: scale(1.05);
+}
+.shortCutBox:active{
+    transform : scale(0.95);
+    box-shadow:none;
 }
 .shortCutBoxBackground{
     border-radius:5px;
@@ -61,6 +65,7 @@
     backdrop-filter: blur(30px); /* 模糊背景 */
     
 }
+
 .shortCutBoxContent{
     width:100%;
     height:100%;
@@ -249,12 +254,7 @@
     backdrop-filter: blur(10px);
     transition: all 0.5s;
 }
-.part2:hover{
-    scale : 1.05;
-}
-.part2:active{
-    scale : 0.95;
-}
+
 .tipBoxTitle{
     color: #fefefee5;
     margin:5px;
@@ -277,8 +277,15 @@
     justify-content: space-between;
     background-color: rgba(255, 255, 255, 0.073);
     width: 99%;
-    border-bottom: 3px solid #2c2c2c34;
-
+    border-bottom: 3px solid #2c2c2c62;
+}
+.tip:hover{
+    background-color: rgba(255, 255, 255, 0.09);
+    scale : 1.01;
+}
+.tip:active{
+    background-color: rgba(255, 255, 255, 0.05);
+    scale : 0.99;
 }
 .tipTitle{
     color: #fefefe95;

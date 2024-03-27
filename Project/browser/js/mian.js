@@ -58,6 +58,17 @@ fetch('https://v1.hitokoto.cn?max_length=24')
     .catch(error => console.error(error));
 
 
-  
+
+
+
+    window.addEventListener('load', function() {
+    
+    setTimeout(function() {
+        iziToast.show({title: 'ZKQ，',message: 'Wellcome to Home',});
+    }, 800); //
+
+
+});
+
     
         
