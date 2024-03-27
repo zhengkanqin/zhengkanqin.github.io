@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./css/centerBoxSearcher.css">
     <link rel="stylesheet" href="./css/centerBoxTool.css">
     <link rel="stylesheet" href="./css/cursor.css">
+    <link rel="stylesheet" href="./css/animation.css">
      <!--  加载iziToast通知模块 -->
     <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/izitoast/1.4.0/css/iziToast.min.css">
     <script type="text/javascript"
@@ -68,8 +69,8 @@ onmouseup='document.selection.empty()'>
                     </div>
                     <div class = "centerBoxHeaderTime">
                         <div class = "timeBoxUserArea" >
-                            <div class = "timeBox1">08</div>
-                        <div class = "timeBox2">29</div>
+                            <div class = "timeBox1" id ="hour">00</div>
+                        <div class = "timeBox2" id = "minute">00</div>
                         </div>
                         
                     </div>
@@ -308,11 +309,14 @@ onmouseup='document.selection.empty()'>
     </div>
 
     <div class = "footer" id = "footer">footer</div>
+    <audio id="myAudio" src="./song/长安忆.mp3" class ="musicPlayer"></audio>
     <!-- 加载js -->
     <script src = "./js/cursor.js"></script>
     <script type="text/javascript" src="./js/vanilla-tilt.js"></script>
     <script src = "./js/after.js"></script> 
+    <script src = "./js/music.js"></script>
     <script>
+
 
     </script>
 

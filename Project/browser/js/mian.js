@@ -74,4 +74,3 @@ document.getElementById('mySelfImg').addEventListener('dragstart', function(even
     event.preventDefault();
   }); 
 
-

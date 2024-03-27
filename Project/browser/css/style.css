@@ -94,3 +94,6 @@
 .scaleBox:active{
     transform: scale(0.95);
 }
+.musicPlayer{
+    display: none;
+}

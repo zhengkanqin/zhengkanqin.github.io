@@ -1,0 +1,12 @@
+.musicRoll {
+    animation: rotate 25s linear infinite; /* 使用动画 */
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg); /* 从0度开始旋转 */
+    }
+    to {
+        transform: rotate(360deg); /* 旋转一圈，回到起始位置 */
+    }
+}
