@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1, p {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.guide-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 30px;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, #3ca2e2, #0077cc);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.guide-button:before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+  transform: scale(1, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+.guide-button:hover:before {
+  transform: scale(1, 1);
+}
+
+.guide-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
