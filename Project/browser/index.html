@@ -35,7 +35,9 @@
     <script src = "js/mian.js"></script>
 </head>
 
-<body>
+<body ncontextmenu='return false' ondragstart='return false' onselectstart='return false'
+onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false'
+onmouseup='document.selection.empty()'>
     
     <div class = "background">
         <img src ="img/background10.webp" class= "backgroundImg" ></img>
@@ -267,7 +269,7 @@
                         <div class = "part1" data-tilt data-tilt-max="1">
                             <div class = "mySelf" data-tilt data-tilt-max="5">
                                 <div class = "mySelfBackground">
-                                    <img class = "mySelfImg" src ="./img/icon/jiyuan.jpg"></img>
+                                    <img class = "mySelfImg" id = "mySelfImg" src ="./img/icon/jiyuan.jpg"></img>
                                     <div class = "mySelfName">汲渊</div>  
                                     <div class = "mySelfWord" id ="mySelfWord">苍山负雪，明烛天南</div>
                                 </div>
