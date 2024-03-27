@@ -18,35 +18,34 @@ iziToast.settings({
 //加载完成后执行
 
 //监听网页宽度
-function stylechange(){
+function stylechange() {
     if (window.innerWidth <= 720) {
         document.getElementById('toolPart2').style.display = "none";
         document.getElementById('setting').style.display = "none";
-        
-    }
-    if (window.innerWidth >= 720) {
+    } else {
         document.getElementById('toolPart2').style.display = "flex";
         document.getElementById('setting').style.display = "flex";
     }
-    if(window.innerHeight<=720) {
+
+    if (window.innerHeight <= 720) {
         document.getElementById('centerBoxHeader').style.display = "none";
-    }
-    if(window.innerHeight>=720) {
+    } else {
         document.getElementById('centerBoxHeader').style.display = "flex";
     }
-    if(window.innerHeight<=570) {
+
+    if (window.innerHeight <= 570) {
         document.getElementById('mySelfWord').style.display = "none";
-    }
-    if(window.innerHeight>=570) {
+    } else {
         document.getElementById('mySelfWord').style.display = "flex";
     }
 }
 
-    window.addEventListener('resize', function () {
-        window.addEventListener('resize', function() {
-            stylechange();
-        });
-    })
+// 添加单个事件监听器
+window.addEventListener('resize', stylechange);
+
+// 页面加载时也执行一次，确保初始状态正确
+window.addEventListener('load', stylechange);
+
     
 
 //获取一言

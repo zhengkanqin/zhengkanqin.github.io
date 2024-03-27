@@ -180,16 +180,52 @@
     width: 50px;
     height:50px;
     padding: 10px;
+    background-color: #fefefe45;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+.musicOperationLast:hover{
+    background-color: #fefefe45;
+    transform: scale(1.05);
+}
+.musicOperationPlay:hover{
+    background-color: #fefefe45;
+    transform: scale(1.05);
+}
+.musicOperationNext:hover{
+    background-color: #fefefe45;
+    transform: scale(1.05);
+}
+.musicOperationLast:active{
+    background-color: #fefefe45;
+    transform: scale(0.95);
+}
+.musicOperationPlay:active{
+    background-color: #fefefe45;
+    transform: scale(0.95);
+}
+.musicOperationNext:active{
+    background-color: #fefefe45;
+    transform: scale(0.95);
 }
 .musicOperationPlay{
     width: 50px;
     height:50px;
     padding: 10px;
+    background-color: #fefefe45;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    transition: all 0.3s;
 }
 .musicOperationNext{
     width: 50px;
     height:50px;
     padding: 10px;
+    background-color: #fefefe45;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    transition: all 0.3s;
 }
 .mySelf{
     /* border: 2px solid #fff; */
