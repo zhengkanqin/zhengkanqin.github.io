@@ -2,17 +2,17 @@
     {
       "title": "长安忆",
       "artist": "双笙",
-      "url": "https://example.com/song1.mp3"
+      "url": "./song/长安忆.mp3"
     },
     {
-      "title": "Song Title 2",
-      "artist": "Artist Name 2",
-      "url": "https://example.com/song2.mp3"
+      "title": "流光记",
+      "artist": "银临",
+      "url": "./song/流光记.flac"
     },
     {
-      "title": "Song Title 3",
-      "artist": "Artist Name 3",
-      "url": "https://example.com/song3.mp3"
+      "title": "别赋",
+      "artist": "双笙",
+      "url": "./song/别赋.flac"
     }
   ]
   
