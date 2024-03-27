@@ -73,3 +73,5 @@ fetch('https://v1.hitokoto.cn?max_length=24')
 document.getElementById('mySelfImg').addEventListener('dragstart', function(event) {
     event.preventDefault();
   }); 
+
+

@@ -104,6 +104,7 @@
     color:#fff;
     font-family: 'type1';
     font-size:clamp(50px, 0.4px + 7.8vw, 100px);
+    text-shadow: 0 0 10px #00000050;
 
 }
 .timeBox2{
@@ -118,7 +119,7 @@
     color:#fff;
     font-family: 'type1';
     font-size:clamp(50px, 0.4px + 7.8vw, 100px);
-
+    text-shadow: 0 0 10px #00000050;
 }
 
 .centerBoxHeaderWeather{
