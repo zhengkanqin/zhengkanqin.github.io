@@ -45,7 +45,7 @@ onselect='document.selection.empty()' oncopy='document.selection.empty()' onbefo
 onmouseup='document.selection.empty()'>
     
     <div class = "background">
-        <img src ="img/background1.webp" class= "backgroundImg" ></img>
+        <img src ="img/background1.webp" class= "backgroundImg" id = "background"></img>
         <div class = "cover"></div>
     </div>
 
@@ -103,7 +103,7 @@ onmouseup='document.selection.empty()'>
                                     </div>
                                     <div class = "shortCutBoxContentName">收藏内容一</div>
                                 </div>
-                                <div class = "shortCutBoxColor"></div>
+                                <div class = "shortCutBoxColor" id ="shortCutBoxColor"></div>
                             </div>
                         </div>
                         <div class = "shortCutBox">
@@ -325,19 +325,49 @@ onmouseup='document.selection.empty()'>
         <div class ="userSetBox scrollable-container" id = "userSetBox">
 
             <section class ="setting-section1">
-                <p>修改个人信息：</p>
+                <p class ="normalP">修改个人信息：</p>
+                <p class = "smallP">姓名(5个字符以内)</p>
                 <input type="text" class = "userInput" id = "userNameInput">
+                <p class = "smallP">签名(10个字符以内)</p>
                 <input type="text" class = "userInput" id = "userWordInput">
+                <p class = "smallP">头像（头像绝对地址）</p>
                 <input type="text" class = "userInput" id = "userImgInput">
-                <div class = "editUserInformationBox">
-                    <div class = "editUserInformation" id = "editUserInformation">确认</div>
-                </div>
+                    <div class = "button1" id = "editUserInformation">确认</div>
+
             </section>
 
-            <section class ="setting-section2">
-                <p>修改主题：</p>
-                <div class = "themeOpt1">默认主题</div>
-                <div class = "themeOpt1">随机主题</div>
+            <section class = "setting-section1">
+                <p class ="normalP">重置数据流：</p>
+                <div class = "button1" id = "resetDataStreamBox">重置所有信息</div>
+                <div class = "button1" id = "resetDataMusic">重置歌单信息</div>
+                <div class = "button1" id = "resetDataUser">重置用户信息</div>
+                <div class = "button1" id = "resetDataTheme">重置主题信息</div>
+            </section>
+
+            <section class = "setting-section1">
+                <p class ="normalP">新增音乐：</p>
+                <form id="musicForm" class ="setting-section1">
+                    <p class ="smallP">歌曲名：</p>
+                    <input type="text" id="titleInput" class="userInput">
+                    <p class ="smallP">歌曲作者：</p>
+                    <input type="text" id="artistInput" class="userInput">
+                    <p class ="smallP">歌曲地址：</p>
+                    <input type="text" id="urlInput" class="userInput">
+                    <p class ="smallP">歌曲歌词：</p>
+                    <input type="text" id="lrcInput" class="userInput">
+                    <button type="submit" class="button1">新增音乐</button>
+                </form>
+            </section>
+
+            <section class = "setting-section1">
+                <p class ="normalP">音乐编辑：</p>
+                <ul id="musicList" class = "musicList"></ul>
+            </section>
+
+            <section class = "setting-section1">
+                <p class = "normalP">主题切换：</p>
+                <ul id="themeList" class ="musicList"></ul>
+                <div class = "button1">更换随机主题</div>
             </section>
 
         </div>
@@ -383,6 +413,7 @@ onmouseup='document.selection.empty()'>
     <script src = "./js/after.js"></script> 
     <script src = "./js/music.js"></script>
     <script src = "./js/setting.js"></script>
+    <script src = "./js/background.js"></script>
 
     <script>
         

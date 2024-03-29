@@ -18,25 +18,25 @@ window.addEventListener('load', function() {
 
 
 if (!localStorage.getItem('indexMusic')) {
-    iziToast.show({title: '系统',message: '没有歌曲目录,已经写入默认目录',});
+    iziToast.show({title: '系统',message: '没有歌曲目录,已经写入默认目录，建议重启',});
     const musicData = [
         {
             "title": "长安忆",
             "artist": "双笙",
             "url": "./song/长安忆.mp3",
-            "lrc": "./song/长安忆.lrc"
+            "lrc": "https://zhengkanqin.github.io/Project/browser/song/长安忆.lrc"
         },
         {
             "title": "流光记",
             "artist": "银临",
             "url": "./song/流光记.flac",
-            "lrc": "./song/流光记.lrc"
+            "lrc": "https://zhengkanqin.github.io/Project/browser/song/流光记.lrc"
         },
         {
             "title": "别赋",
             "artist": "双笙",
             "url": "./song/别赋.flac",
-            "lrc": "./song/别赋.lrc"
+            "lrc": "https://zhengkanqin.github.io/Project/browser/song/别赋.lrc"
         }
     ];
     localStorage.setItem('indexMusic', JSON.stringify(musicData));
@@ -44,7 +44,7 @@ if (!localStorage.getItem('indexMusic')) {
 
 
 if (!localStorage.getItem('indexUser')) {
-    iziToast.show({title: '系统',message: '用户信息不存在，已经创建默认信息',});
+    iziToast.show({title: '系统',message: '用户信息不存在，已经创建默认信息，建议重启',});
     const userData = {
         "name": "汲渊",
         "word": "苍山负雪，明烛天南",
@@ -53,48 +53,55 @@ if (!localStorage.getItem('indexUser')) {
     localStorage.setItem('indexUser', JSON.stringify(userData));
 }
 
+
+if (!localStorage.getItem('themeSet')) {
+    const userData1 = 0;
+    localStorage.setItem('themeSet', JSON.stringify(userData1));
+}
+
+
 if (!localStorage.getItem('indexTheme')) {
-    iziToast.show({title: '系统',message: '用户主题信息不存在，已经创建主题列表',});
+    iziToast.show({title: '系统',message: '用户主题信息不存在，已经创建主题列表，建议重启',});
     const userTheme = [
         {
             "background": "./img/background1.webp",
-            "color": "rgb(62, 155, 112);"
+            "color": "rgb(62, 155, 112)"
         },
         {
             "background": "./img/background2.webp",
-            "color": "rgb(190, 195, 220);"
+            "color": "rgb(190, 195, 220)"
         },
         {
             "background": "./img/background3.webp",
-            "color": "rgb(183, 86, 81);"
+            "color": "rgb(183, 86, 81)"
         },
         {
             "background": "./img/background4.webp",
-            "color": "rgb(55, 175, 164);"
+            "color": "rgb(55, 175, 164)"
         },
         {
             "background": "./img/background5.webp",
-            "color": "rgb(198, 136, 116);"
+            "color": "rgb(198, 136, 116)"
         },
         {
             "background": "./img/background6.webp",
-            "color": "rgb(81, 159, 157);"
+            "color": "rgb(81, 159, 157)"
         },
         {
             "background": "./img/background7.webp",
-            "color": "rgb(145, 169, 177);"
+            "color": "rgb(145, 169, 177)"
         },
         {
             "background": "./img/background8.webp",
-            "color": "rgb(248, 178, 174);"
+            "color": "rgb(248, 178, 174)"
         },
         {
             "background": "./img/background9.webp",
-            "color": "rgb(199, 167, 235);"
+            "color": "rgb(199, 167, 235)"
         },
         {
             "background": "./img/background10.webp",
-            "color": "rgb(348, 120, 154);"
+            "color": "rgb(348, 120, 154)"
         }
     ];
     localStorage.setItem('indexTheme', JSON.stringify(userTheme));
