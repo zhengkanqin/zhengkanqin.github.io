@@ -15,19 +15,25 @@ iziToast.settings({
     iconColor: '#efefef',
 });
 
+
+
+
+
+
+
+
+
 //加载完成后执行
 
 //监听网页宽度
 function stylechange() {
     if (window.innerWidth <= 720) {
         document.getElementById('toolPart2').style.display = "none";
-        document.getElementById('setting').style.display = "none";
     } else {
         document.getElementById('toolPart2').style.display = "flex";
-        document.getElementById('setting').style.display = "flex";
     }
 
-    if (window.innerHeight <= 720) {
+    if (window.innerHeight <= 600) {
         document.getElementById('centerBoxHeader').style.display = "none";
     } else {
         document.getElementById('centerBoxHeader').style.display = "flex";
@@ -57,20 +63,12 @@ fetch('https://v1.hitokoto.cn?max_length=24')
     .catch(error => console.error(error));
 
 
-
-
-
-    window.addEventListener('load', function() {
-    
-    setTimeout(function() {
-        iziToast.show({title: 'ZKQ，',message: 'Wellcome to Home',});
-    }, 800); //
-
-
-});
-
     
 document.getElementById('mySelfImg').addEventListener('dragstart', function(event) {
     event.preventDefault();
   }); 
+
+
+//------------------------主题切换
+  
 

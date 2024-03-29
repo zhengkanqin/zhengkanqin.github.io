@@ -1,0 +1,42 @@
+/* 通用滚动条样式 */
+.scrollable-container {
+    scrollbar-width: thin; /* 设置滚动条为细样式，适用于Firefox */
+    scrollbar-color: transparent transparent; /* 设置滚动条滑块和背景色为透明 */
+  }
+  
+  /* Webkit浏览器（Chrome, Safari, Edge等）滚动条样式 */
+  .scrollable-container::-webkit-scrollbar {
+    width: 8px; /* 设置滚动条宽度 */
+    height: 8px; /* 设置滚动条高度 */
+    background-color: transparent; /* 设置滚动条背景为透明 */
+  }
+  
+  .scrollable-container::-webkit-scrollbar-thumb {
+    background: #888; /* 设置滑块颜色 */
+    border-radius: 4px; /* 设置滑块圆角 */
+    border: 2px solid transparent; /* 添加边框并设置为透明，以增加滑块的可见性 */
+  }
+  
+  /* Firefox滚动条样式 */
+  .scrollable-container {
+    scrollbar-width: thin; /* 设置滚动条为细样式 */
+    scrollbar-color: transparent transparent; /* 设置滚动条滑块和背景色为透明 */
+  }
+  
+  /* IE 10+ 滚动条样式 */
+  .scrollable-container {
+    -ms-overflow-style: none; /* 隐藏IE的默认滚动条 */
+  }
+  
+  .scrollable-container::-ms-scrollbar {
+    width: 8px; /* 设置滚动条宽度 */
+    height: 8px; /* 设置滚动条高度 */
+    background-color: transparent; /* 设置滚动条背景为透明 */
+    border-radius: 4px; /* 设置滚动条圆角 */
+  }
+  
+  .scrollable-container::-ms-thumb {
+    background-color: #888; /* 设置滑块颜色 */
+    border-radius: 4px; /* 设置滑块圆角 */
+  }
+  

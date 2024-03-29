@@ -32,3 +32,29 @@ updateTime(); // 初始加载时更新一次
 
 // 每秒更新一次时间
 setInterval(updateTime, 1000);
+
+
+
+    
+document.addEventListener("click", function(event) {
+    var footer = document.getElementById("footer");
+    var target = event.target;
+
+    // 检查是否包含 footerUp 类名
+    var isFooterUp = footer.classList.contains("footerUp");
+
+    // 如果当前是 footerUp 状态且点击非 footer 区域，则切换类名
+    if (isFooterUp && !target.closest('.footer')) {
+        footer.classList.toggle("footerUp");
+        footer.classList.toggle("footerDown");
+    }
+
+    // 如果当前是 footerDown 状态且点击 footer 区域，则切换类名
+    if (!isFooterUp && (target.closest('.footer') || target === footer)) {
+        footer.classList.toggle("footerUp");
+        footer.classList.toggle("footerDown");
+    }
+});
+
+
+

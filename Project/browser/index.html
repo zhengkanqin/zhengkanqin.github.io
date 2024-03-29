@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="./css/centerBoxTool.css">
     <link rel="stylesheet" href="./css/cursor.css">
     <link rel="stylesheet" href="./css/animation.css">
+    <link rel="stylesheet" href="./css/setting.css">
+    <link rel="stylesheet" href="./css/custom-scrollbar.css">
      <!--  加载iziToast通知模块 -->
     <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/izitoast/1.4.0/css/iziToast.min.css">
     <script type="text/javascript"
@@ -35,6 +37,7 @@
     <!--  加载所需要的JS -->
     <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.5.1/jquery.min.js"></script>
     <script src = "js/mian.js"></script>
+    <script src = "js/start.js"></script>
 </head>
 
 <body ncontextmenu='return false' ondragstart='return false' onselectstart='return false'
@@ -42,17 +45,13 @@ onselect='document.selection.empty()' oncopy='document.selection.empty()' onbefo
 onmouseup='document.selection.empty()'>
     
     <div class = "background">
-        <img src ="img/background10.webp" class= "backgroundImg" ></img>
+        <img src ="img/background1.webp" class= "backgroundImg" ></img>
         <div class = "cover"></div>
     </div>
 
     <div class = "container">
         <section class = "centerBox">
-            <div class = "settingBox" id = "setting">
-                <div class = "setting">
-                    <img class = "settingButton" src = "./img/icon/setting.png"></img>
-                </div>
-            </div>
+            
             <div class = "centerBoxUseArea">
 
                 <div class = "centerBoxHeader" id = "centerBoxHeader" data-tilt data-tilt-max="1">
@@ -94,7 +93,7 @@ onmouseup='document.selection.empty()'>
                 </div>
 
                 <div class = "centerBoxTool">
-                    <div class ="shortCut">
+                    <div class ="shortCut scrollable-container">
 <!-- ------------------------------------------------------------------- -->
                         <div class = "shortCutBox">
                             <div class = "shortCutBoxBackground">
@@ -249,7 +248,8 @@ onmouseup='document.selection.empty()'>
                                 </div>
                                 
                             </div>
-                        </div>                        <div class = "shortCutBox">
+                        </div>                        
+                        <div class = "shortCutBox">
                             <div class = "shortCutBoxBackground">
                                 <div class = "shortCutBoxContent">
                                     <div class = "shortCutBoxContentIcon">
@@ -260,6 +260,18 @@ onmouseup='document.selection.empty()'>
                                 <div class = "shortCutBoxColor"></div>
                             </div>
                         </div>
+                        <div class = "shortCutBox">
+                            <div class = "shortCutBoxBackground">
+                                <div class = "shortCutBoxContent">
+                                    <div class = "shortCutBoxContentIcon">
+                                        <img class = "shortCutBoxContentIconImg" src ="img/icon/music.png"></img>
+                                    </div>
+                                    <div class = "shortCutBoxContentName">收藏内容一</div>
+                                </div>
+                                <div class = "shortCutBoxColor"></div>
+                            </div>
+                        </div>
+                        
 
 
 
@@ -272,7 +284,7 @@ onmouseup='document.selection.empty()'>
                             <div class = "mySelf" data-tilt data-tilt-max="5">
                                 <div class = "mySelfBackground">
                                     <img class = "mySelfImg" id = "mySelfImg" src ="./img/icon/jiyuan.jpg"></img>
-                                    <div class = "mySelfName">汲渊</div>  
+                                    <div class = "mySelfName" id = "mySelfName">汲渊</div>  
                                     <div class = "mySelfWord" id ="mySelfWord">苍山负雪，明烛天南</div>
                                 </div>
                             </div>
@@ -308,15 +320,72 @@ onmouseup='document.selection.empty()'>
         </section>
     </div>
 
-    <div class = "footer" id = "footer">footer</div>
-    <audio id="myAudio" src="./song/长安忆.mp3" class ="musicPlayer"></audio>
+    <div class = "footer footerDown" id = "footer">
+        <p id = "displayer" class ="displayer">Setting</p>
+        <div class ="userSetBox scrollable-container" id = "userSetBox">
+
+            <section class ="setting-section1">
+                <p>修改个人信息：</p>
+                <input type="text" class = "userInput" id = "userNameInput">
+                <input type="text" class = "userInput" id = "userWordInput">
+                <input type="text" class = "userInput" id = "userImgInput">
+                <div class = "editUserInformationBox">
+                    <div class = "editUserInformation" id = "editUserInformation">确认</div>
+                </div>
+            </section>
+
+            <section class ="setting-section2">
+                <p>修改主题：</p>
+                <div class = "themeOpt1">默认主题</div>
+                <div class = "themeOpt1">随机主题</div>
+            </section>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <audio id="myAudio" src="./song/长安忆.mp3" class ="musicPlayer" loop='loop'></audio>
     <!-- 加载js -->
     <script src = "./js/cursor.js"></script>
     <script type="text/javascript" src="./js/vanilla-tilt.js"></script>
     <script src = "./js/after.js"></script> 
     <script src = "./js/music.js"></script>
-    <script>
+    <script src = "./js/setting.js"></script>
 
+    <script>
+        
 
     </script>
 

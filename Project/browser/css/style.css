@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+
+  
 .background {
     z-index: 0;
     position: absolute;
@@ -24,7 +26,7 @@
 }
 .cover{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     position: fixed;
     background-image: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .5) 100%), radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, .3) 166%);
     transition: 0.25s;
@@ -71,19 +73,7 @@
 .setting img{
     width: 60%;
 }
-.footer{
-    width: 100%;
-    height: 4vh;
-    position: fixed;
-    bottom: 0;
-    background-color: #ffffff1a;
-    backdrop-filter: blur(30px);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-}
+
 
 .scaleBox{
     transition: all 0.5s;
@@ -97,3 +87,7 @@
 .musicPlayer{
     display: none;
 }
+
+
+
+
