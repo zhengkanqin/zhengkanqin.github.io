@@ -1,6 +1,6 @@
 const audio = document.getElementById("myAudio");
 const displayer = document.getElementById('displayer');
-let jsonData; // 保存 JSON 数据的变量
+let musicJsonData; // 保存 JSON 数据的变量
 let currentIndex = 0; // 当前索引变量
 let musicName, musicArtist, musicUrl,musicLrc;;
 let maxIndex;  // 最大索引值
@@ -10,12 +10,12 @@ const storedData = localStorage.getItem('indexMusic');
 
 // 如果本地存储中存在名为 indexMusic 的数据，则使用该数据
 if (storedData) {
-    jsonData = JSON.parse(storedData); // 将数据解析为 JSON 格式并保存到 jsonData 变量中
-    maxIndex = jsonData.length - 1; // 获取 JSON 数据的最大索引值
-    musicName = jsonData[currentIndex].title;
-    musicArtist = jsonData[currentIndex].artist;
-    musicUrl = jsonData[currentIndex].url;
-    musicLrc = jsonData[currentIndex].lrc;
+    musicJsonData = JSON.parse(storedData); // 将数据解析为 JSON 格式并保存到 musicJsonData 变量中
+    maxIndex = musicJsonData.length - 1; // 获取 JSON 数据的最大索引值
+    musicName = musicJsonData[currentIndex].title;
+    musicArtist = musicJsonData[currentIndex].artist;
+    musicUrl = musicJsonData[currentIndex].url;
+    musicLrc = musicJsonData[currentIndex].lrc;
 
     $('#musicName').text(musicName); // 初始化音乐名字
     audio.src = musicUrl; // 初始化音乐 URL
@@ -139,10 +139,11 @@ $('#lastMusic').click(function(event) {
 });
 
 function updateMusicInfo() {
-    musicName = jsonData[currentIndex].title;
-    musicArtist = jsonData[currentIndex].artist;
-    musicUrl = jsonData[currentIndex].url;
-    musicLrc = jsonData[currentIndex].lrc;
+    musicName = musicJsonData[currentIndex].title;
+    musicArtist = musicJsonData[currentIndex].artist;
+    musicUrl = musicJsonData[currentIndex].url;
+    musicLrc = musicJsonData[currentIndex].lrc;
+    console.log(musicJsonData);
     $('#musicName').text(musicName);
 }
 
