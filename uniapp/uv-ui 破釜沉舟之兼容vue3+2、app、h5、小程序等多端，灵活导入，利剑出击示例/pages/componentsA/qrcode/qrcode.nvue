@@ -1,0 +1,84 @@
+<template>
+	<view class="uv-page">
+		<view class="uv-demo-block">
+			<text class="uv-demo-block__title">基本使用</text>
+			<view class="uv-demo-block__content">
+				<view class="uv-page__button-item">
+					<uv-qrcode ref="uvqrcode"
+						:options="options1"
+						value="https://h5.uvui.cn"></uv-qrcode>
+				</view>
+			</view>
+		</view>
+		<view class="uv-demo-block">
+			<text class="uv-demo-block__title">自定义样式</text>
+			<view class="uv-demo-block__content">
+				<view class="uv-page__button-item">
+					<uv-qrcode ref="uvqrcode2"
+						value="https://h5.uvui.cn"
+						:options="options2">
+						<template v-slot:loading>
+							<uv-loading-icon color="red"></uv-loading-icon>
+						</template>
+					</uv-qrcode>
+				</view>
+			</view>
+		</view>
+		<view class="uv-demo-block">
+			<text class="uv-demo-block__title">自定义风格</text>
+			<view class="uv-demo-block__content">
+				<view class="uv-page__button-item">
+					<uv-qrcode ref="uvqrcode3"
+						value="https://h5.uvui.cn"
+						:options="options3"
+						>
+					</uv-qrcode>
+				</view>
+				<uv-gap></uv-gap>
+				<uv-button text="保存二维码" type="primary" :custom-style="{width:'200px'}" @click="saveQRCode"></uv-button>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import QRCodeStyleRound from './uqrcode.plugin.round.es.js';
+	export default {
+		data() {
+			return {
+				options1: {
+					foregroundImageSrc: 'https://www.uvui.cn/common/logo.png'
+				},
+				options2: {
+					data: 'https://www.uvui.cn',
+					size: 300,
+					useDynamicSize: false,
+					errorCorrectLevel: 'Q',
+					margin: 10,
+					areaColor: "#F95F6B",
+					backgroundColor: "#3c9cff"
+				},
+				options3: {
+					style: 'round',
+					foregroundImageSrc: 'https://www.uvui.cn/common/logo.png'
+				}
+			}
+		},
+		onReady() {
+			/* 注册扩展插件 */
+			this.$refs.uvqrcode3.registerStyle(QRCodeStyleRound); // qrcode为组件的ref名称
+		},
+		methods: {
+			saveQRCode(){
+				this.$refs.uvqrcode3.save({
+				  success: () => {
+				    uni.showToast({
+				      icon: 'success',
+				      title: '保存成功'
+				    });
+				  }
+				});
+			}
+		}
+	}
+</script>

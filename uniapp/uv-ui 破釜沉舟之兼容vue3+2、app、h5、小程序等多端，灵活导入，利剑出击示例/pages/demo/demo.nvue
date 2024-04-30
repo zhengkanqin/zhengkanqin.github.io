@@ -1,0 +1,18 @@
+<template>
+	<view>
+		<uv-button text="请求数据" @click="getData"></uv-button>
+	</view>
+</template>
+<script>
+	import { fetchMenu } from '@/common/api.js'
+	export default {
+		methods: {
+			getData() {
+				fetchMenu()
+			},
+			confirm(e) {
+				console.log('日历选择：',e)
+			}
+		}
+	}
+</script>

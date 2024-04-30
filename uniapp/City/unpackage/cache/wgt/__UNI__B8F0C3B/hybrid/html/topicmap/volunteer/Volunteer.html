@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>volunteer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://at.alicdn.com/t/c/font_4517633_qly983j96jj.js"></script>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ec334f27789fb7c641a7db923e768679&plugin=AMap.ToolBar"></script>
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+</head>
+
+<body>
+    <div class="map-container" id="map-container"></div>
+    <!-- 引入高德地图的JavaScript库，并指定需要的插件 AMap.ToolBar -->
+    <script>
+        GoEvent = (id) => {
+            uni.navigateTo({
+                'url': "/pages/titleContent/titleContent?id=" + id
+            })
+        };
+    </script>
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+    <script>
+        var map;
+        var markers = [];
+        var infoMarkers = []; // 用于存储信息框的标记数组
+    </script>
+    <script>
+        // 初始化地图
+        var map = new AMap.Map('map-container', {
+            zoom: 15,
+            minZoom: 13, // 设置地图允许的最小缩放级别为 13
+            maxZoom: 20, // 设置地图允许的最大缩放级别为 20
+            center: [114.371713, 30.542335],
+            resizeEnable: true,
+            mapStyle: "amap://styles/fresh" // 地图样式
+        });
+    </script>
+    <script>
+        const dataVolunteer = {}
+        Object.defineProperty(dataVolunteer, 'property', {
+            get: function () {
+                console.log('Getting property value');
+                return this._property;
+            },
+            set: function (value) {
+                console.log('Setting property value to ' + value);
+                this._property = value;
+                loadvolunteers(value);
+            }
+        });
+    </script>
+    <script>
+
+        function loadvolunteers(eventData) {
+            // var eventData = JSON.parse(localStorage.getItem("data"));//获取eventData
+            var serverUrl = "http://116.62.176.59:8080/xqlgq/files/";
+            eventData.list.forEach(function (data) {
+                var coordinates = [data.locationX, data.locationY];
+                var markerContent;
+                var imageURL = data.publisher.userImage;
+                // var imageURL = "https://uploadfile.bizhizu.cn/2017/0701/20170701031428774.jpg";
+                 '<img src="' + imageURL + '" class="avatar-background-help">';
+                markerContent = '<div class="custom-marker">' +
+                    '<img src="' + imageURL + '" class="avatar-background-help">' +
+                    '   <img src="https://i.postimg.cc/PrD0zDbV/school.png" class="avatar-help">' + // 定位图标
+                    '</div>';
+
+
+                var marker = new AMap.Marker({
+                    position: coordinates,
+                    content: markerContent,
+                    clickable: true,//图标可点击
+                    offset: new AMap.Pixel(0, 0),
+                    eventID: data.gid,
+                    eventUser: data.userId,
+                    eventType: data.type,
+                    eventTime: data.timestamp,
+                    eventTitle: data.title,
+                    eventContent: data.content,
+                    eventImageList: data.images,
+                    eventPayment: data.payment,
+                    eventDeadline: data.deadline,
+                    eventParticipantList: data.participantList,
+                    eventLike: data.like
+                });
+
+                markers.push(marker);
+                var infoMarkerContent;
+                // 创建信息框的内容
+                var truncatedContent = data.content.length > 20 ? data.content.substring(0, 20) + '...' : data.content;
+                infoMarkerContent = '<div class="info-marker-game">';
+                infoMarkerContent += '<div class="info-left-container-game">';
+                infoMarkerContent += '<p class="event_title_game">' + data.title + '</p>'; // 标题在最上面
+                infoMarkerContent += '<div class="info-text-game">';
+                infoMarkerContent += '<p>' + truncatedContent + '</p>';
+                infoMarkerContent += '</div>';
+                if (data.tag) {
+                    var tagsString = JSON.stringify(data.tag);
+                    // 然后我们需要将这个 JSON 字符串解析回数组
+                    var tagsArray = JSON.parse(tagsString);
+                    infoMarkerContent += '<div class="info-tags">';
+                    if (tagsArray.includes("好友")) {
+                        infoMarkerContent += '<p class="tag-friend">' + "好友" + '</p>';
+                    };
+                    if (tagsArray.includes("最近")) {
+                        infoMarkerContent += '<p class="tag-game">' + "最近" + '</p>';
+                    }
+                    if (tagsArray.includes("娱乐")) {
+                        infoMarkerContent += '<p class="tag-game">' + "娱乐" + '</p>';
+                    }
+                    infoMarkerContent += '</div>';
+                }
+
+
+                // 左侧内容结束
+                infoMarkerContent += '</div>'; // 左侧容器结束
+                // 判断是否有时间
+                // 判断是否有时间
+
+
+                if (data.deadline && data.deadline.length > 2) {
+                    
+                // 添加右侧容器
+                infoMarkerContent += '<div class="info-right-container-game">';
+                infoMarkerContent += '<svg class="icon time-icon" aria-hidden="true">';
+                infoMarkerContent += '<use xlink:href="#icon-daojishi2"></use>';
+                infoMarkerContent += '</svg>';
+                // 添加倒计时到信息框中
+                infoMarkerContent += '<p id="' + data.gid + '" class="countdown-time" ></p>';
+                infoMarkerContent += '</div>'; // 右侧容器结束
+                    var end = JSON.stringify(data.deadline);
+                    var time = JSON.parse(end);
+                    var year=parseInt((time[0]));
+                    var month=parseInt((time[1]));
+                    var day=parseInt((time[2]));
+                    var hour=parseInt((time[3]));
+                    var minute=parseInt((time[4]));
+                    var dateParts = [year, month, day, hour, minute];
+                    var date = new Date(dateParts[0], dateParts[1], dateParts[2], dateParts[3], dateParts[4], 0);
+                    var endTime = date; // 获取目标的日期值为：2024/4/11 00:00:00;
+                    setInterval(function () {
+                        var now = new Date(); // 获取当前时间
+                        var diff = endTime.getTime() - now.getTime(); // 获取距离目标时间的毫秒数
+                        diff = parseInt(diff / 1000); // 转换成秒数
+                        var days = parseInt(diff / (24 * 3600)); // 获取天数
+                        var hours = parseInt(diff % (24 * 3600) / 3600); // 获取小时
+                        var minutes = parseInt(diff % 3600 / 60); // 获取分钟
+                        var seconds = diff % 60; // 获取秒数
+
+                        // 格式化显示倒计时
+                        var countdownTime = formatTwoDigits(days) + ":" + formatTwoDigits(hours) + ":" + formatTwoDigits(minutes) + ":" + formatTwoDigits(seconds);
+                        // 更新倒计时显示
+                        document.getElementById(data.gid).textContent = countdownTime;
+                    }, 1000); // 刷新间隔为1秒
+
+                    // 格式化数字为两位数
+                    function formatTwoDigits(num) {
+                        return num < 10 ? "0" + num : num;
+                    }
+                    // 信息框内容结束
+                }
+                // 信息框内容结束
+                infoMarkerContent += '</div>'; // 信息框结束    
+                // 创建信息框的标记，并添加到地图中
+                var infoMarker = new AMap.Marker({
+                    position: coordinates,
+                    content: infoMarkerContent,
+                    offset: new AMap.Pixel(40, 0), // 位置偏移以显示在原标记上方
+                    eventID: data.gid,
+                    zIndex: 1000, // 确保信息框在顶层
+                    clickable: true, // 使信息框不可点击
+                    relatedMarker: marker, // 将 marker 关联到 infoMarker 的自定义属性 relatedMarker 中
+                    flag: true,//记录infomarker的显示情况
+                });
+
+                infoMarker.flag = true;
+                infoMarkers.push(infoMarker);
+                // 将原标记的标记添加到地图中
+
+                infoMarker.on('touchend', function (e) {
+                    // alert("aa");
+                    // GoEvent(2);
+                    var infoMarker = e.target;
+                    var marker = infoMarker.relatedInfoMarker;
+                    infoMarker.relatedMarker = marker;
+                    console.log("go-event" + infoMarker._opts.eventID);
+
+                    var eventID = parseInt(infoMarker._opts.eventID);
+                    GoEvent(eventID);
+                });;
+                var startTime;
+                marker.on('touchstart', function (e) {
+                    startTime = new Date().getTime(); // 记录触摸开始时间
+                });
+
+                marker.on('touchend', function (e) {
+                    var endTime = new Date().getTime(); // 记录触摸结束时间
+                    var duration = endTime - startTime; // 计算触摸持续时间
+                    var marker = e.target;
+                    var infoMarker = marker.infoMarker;
+                    var flag = infoMarker.flag;
+
+
+                    // 如果持续时间小于0.1秒，则执行操作1
+                    if (duration < 100) {
+                        // 执行操作1
+                        console.log("收起信息框" + marker._opts.eventID);
+
+                        if (flag) {
+                            // 如果infoMarker已经在地图上，则隐藏它
+                            infoMarker.setMap(null);
+                            infoMarker.flag = false;
+                        } else {
+                            // 如果infoMarker不在地图上，则显示它
+                            infoMarker.setMap(map);
+                            infoMarker.flag = true;
+                        }
+                    }
+                    // 如果持续时间大于1秒，则执行操作2
+                    else if (duration > 500) {
+                        // 执行操作2
+                        var eventUser = parseInt(marker._opts.eventUser);
+                        GoUser(eventUser);
+                        console.log("打开用户信息" + marker._opts.eventUser);
+                    }
+                });
+
+                marker.infoMarker = infoMarker;
+
+            });
+            map.add(markers);
+            map.add(infoMarkers);
+        }
+
+    </script>
+      <script type="text/javascript" src="https://gitee.com/dcloud/uni-app/raw/dev/dist/uni.webview.1.5.4.js"></script>
+</body>
+
+</html>

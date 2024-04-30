@@ -1,0 +1,180 @@
+<template>
+	<view class="uv-page" ref="page">
+		<uv-cell-group>
+			<uv-cell
+				@click="showPicker(index)"
+				:title="item.title"
+				v-for="(item, index) in list"
+				:key="index"
+				isLink
+			>
+				<template v-slot:icon>
+					<image
+						class="uv-cell-icon"
+						:src="item.iconUrl"
+						mode="widthFix"
+					></image>
+				</template>
+			</uv-cell>
+		</uv-cell-group>
+		<view>
+		<uv-picker
+			ref="picker1"
+			:columns="columns1"
+			@change="change"
+			@cancel="cancel"
+			@confirm="confirm"
+		></uv-picker>
+		<uv-picker
+			ref="picker2"
+			:columns="columns2"
+			:defaultIndex="[1]"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
+		></uv-picker>
+		<uv-picker
+			ref="picker3"
+			:columns="columns3"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="changeHandler1"
+		></uv-picker>
+		<regionsPicker ref="picker4"></regionsPicker>
+		<uv-picker
+			ref="picker5"
+			:columns="columns4"
+			@cancel="cancel"
+			@confirm="confirm"
+			:loading="loading"
+			@change="changeHandler2"
+		></uv-picker>
+		<uv-picker
+			ref="picker6"
+			:columns="columns5"
+			title="标题太长就会显示省略号"
+			@cancel="cancel"
+			@confirm="confirm"
+			@change="change"
+		></uv-picker>
+		<uv-picker
+			ref="picker7"
+			:columns="columns6"
+			:closeOnClickOverlay="false"
+			@cancel="cancel"
+			@confirm="confirm"
+			@close="close"
+			@change="change"
+		></uv-picker>
+		</view>
+	</view>
+</template>
+
+<script>
+	import regionsPicker from './components/regions.vue';
+	export default {
+		components: {regionsPicker},
+		data() {
+			return {
+				loading: false,
+				columnData: [
+					['深圳', '厦门', '上海', '拉萨'],
+					['得州', '华盛顿', '纽约', '阿拉斯加']
+				],
+				columns1: [
+					['中国', '美国', '日本']
+				],
+				columns2: [
+					['中国', '美国', '日本']
+				],
+				columns3: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columns4: [
+					['中国', '美国'],
+					['深圳', '厦门', '上海', '拉萨']
+				],
+				columns5: [
+					['中国', '美国', '日本']
+				],
+				columns6: [
+					['中国', '美国', '日本']
+				],
+				list: [{
+						title: '基础使用',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/2.png'
+					}, {
+						title: '设置默认项',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/5.png'
+					}, {
+						title: '多列联动',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/1.png'
+					},{
+						title: '省市区三级联动',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/1.png'
+					}, {
+						title: '加载中状态(切换第一列)',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/3.png'
+					}, {
+						title: '设置标题',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/4.png'
+					}, {
+						title: '禁止点击遮罩关闭',
+						iconUrl: 'https://cdn.uviewui.com/uview/demo/picker/6.png'
+					}]
+			}
+		},
+		methods: {
+			changeHandler1(e) {
+				this.change(e)
+				const {
+					columnIndex,
+					value,
+					values,
+					index
+				} = e
+				if (columnIndex === 0) {
+					this.$refs.picker3.setColumnValues(1, this.columnData[index])
+				}
+			},
+			changeHandler2(e) {
+				this.change(e)
+				const {
+					columnIndex,
+					value,
+					values,
+					index
+				} = e
+				if (columnIndex === 0) {
+					this.loading = true
+					setTimeout(()=>{
+						this.$refs.picker4.setColumnValues(1, this.columnData[index])
+						this.loading = false
+					},1500)
+				}
+			},
+			showPicker(index) {
+				this.$refs[`picker${index+1}`].open();
+			},
+			change(e) {
+				console.log('change', e);
+			},
+			close() {
+				console.log('close');
+			},
+			confirm(e) {
+				console.log('confirm', e);
+			},
+			cancel() {
+				console.log('cancel');
+			}
+		},
+	}
+</script>
+
+<style lang="scss">
+	.uv-page {
+		padding: 0;
+	}
+</style>

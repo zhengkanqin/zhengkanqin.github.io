@@ -1,0 +1,432 @@
+[
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 626262,
+"start": 0,
+"end": 122725,
+"type": "type",
+"properties": {
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "类型"
+            }
+          },
+          "end": {
+"identity": 122725,
+"labels": [
+              "Type"
+            ],
+"properties": {
+ "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "服务型"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 582838,
+"start": 0,
+"end": 120895,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120895,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"name": "委内瑞拉"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 553108,
+"start": 0,
+"end": 120934,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120934,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"name": "德国"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 551319,
+"start": 0,
+"end": 120810,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120810,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713187252277",
+"name": "土耳其"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 544129,
+"start": 0,
+"end": 120811,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120811,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "古巴"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 536963,
+"start": 0,
+"end": 120888,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120888,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "秘鲁"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 452313,
+"start": 0,
+"end": 120969,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120969,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "洪都拉斯"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 433083,
+"start": 0,
+"end": 120805,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120805,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "玻利维亚"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 287699,
+"start": 0,
+"end": 120931,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120931,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "赞比亚"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "p": {
+
+"segments": [
+        {
+          "start": {
+"identity": 0,
+"labels": [
+              "Enterprise"
+            ],
+"properties": {
+"name": "中国航空技术北京有限公司",
+"setup_time": "1988/8/12",
+"address": "北京市北京经济技术开发区宏达北路16号6号楼",
+"imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"captial": "80000.0万人民币",
+"credit_code": "91110302101114816L"
+            }
+          },
+          "relationship": {
+"identity": 215520,
+"start": 0,
+"end": 120926,
+"type": "export",
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "出口"
+            }
+          },
+          "end": {
+"identity": 120926,
+"labels": [
+              "Country"
+            ],
+"properties": {
+  "imageUrl":"http://116.62.176.59:8080/xqlgq/files/1713943396803",
+"name": "美国"
+            }
+          }
+        }
+      ]
+    }
+  }
+]

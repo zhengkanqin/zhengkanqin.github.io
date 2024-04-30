@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://at.alicdn.com/t/c/font_4517633_51fsad2ig2q.js"></script>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ec334f27789fb7c641a7db923e768679&plugin=AMap.ToolBar"></script>
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+</head>
+
+<body>
+    <div class="map-container" id="map-container"></div>
+    <!-- 引入高德地图的JavaScript库，并指定需要的插件 AMap.ToolBar -->
+    <script>
+        GoEvent = (id) => {
+            uni.navigateTo({
+                'url': "/pages/titleContent/titleContent?id=" + id
+            })
+        };
+    </script>
+
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+    <script>
+        var map;
+        var markers = [];
+        var infoMarkers = []; // 用于存储信息框的标记数组
+    </script>
+    <script>
+        // 初始化地图
+        var map = new AMap.Map('map-container', {
+            zoom: 15,
+            minZoom: 13, // 设置地图允许的最小缩放级别为 13
+            maxZoom: 20, // 设置地图允许的最大缩放级别为 20
+            center: [114.371713, 30.542335],
+            resizeEnable: true,
+            mapStyle: "amap://styles/whitesmoke" // 地图样式
+        });
+    </script>
+    <script>
+        const dataGame = {}
+        Object.defineProperty(dataGame, 'property', {
+            get: function () {
+                console.log('Getting property value');
+                return this._property;
+            },
+            set: function (value) {
+                console.log('Setting property value to ' + value);
+                this._property = value;
+                loadgame(value);
+            }
+        });
+    </script>
+    <script>
+        var eventData =
+{
+    "code": "0",
+    "msg": null,
+    "data": [
+        {
+            "gid": 1,
+            "locationX": 114.3604976343629,
+            "locationY": 30.545550260611407,
+            "userId": 1,
+            "title": "在小",
+            "content": "你的",
+            "timestamp": [
+                2024,
+                4,
+                15,
+                15,
+                30,
+                46,
+                45862000
+            ],
+            "type": "学术",
+            "tag": "[好友,最近]",
+            "images": "[]",
+            "payment": 1,
+            "deadline": [
+                2024,
+                5,
+                15,
+                0,
+                4,
+                12
+            ],
+            "participantLimit": null,
+            "cutDown": null,
+            "publisher": null,
+            "like": 0,
+            "collect": 0,
+            "participant": 0,
+            "likeAlready": false,
+            "collectAlready": false,
+            "participantAlready": false,
+            "commentList": null,
+            "participantList": null
+        },
+        {
+            "gid": 2,
+            "locationX": 114.36861368314976,
+            "locationY": 30.538198696355693,
+            "userId": 6,
+            "title": "白又胖🥲120斤也可以很美的",
+            "content": "因为对美食偏爱，从98斤涨到了120，\n🐻从C到E+，臀围从85涨到95\n\n以前有人打压过我，说我是胖纸，\n但我觉得女人要随遇而安，自己喜欢自己就好，\n舒服开心最重要，所以我没有强迫自己去减重\n而是摒弃瘦杆儿审美，爱上现在丰腴微胖的自己\n反而更爱穿包身裙子了\n\n愿大家无论自己是什么样，只活在当下\n自信开心地迎接每一天，\n只和喜欢自己这款的人去交往",
+            "timestamp": [
+                2024,
+                4,
+                15,
+                15,
+                33,
+                20,
+                312873000
+            ],
+            "type": "求助",
+            "images": "[]",
+            "payment": 10,
+            "tag": "[好友,最近]",
+            "deadline": null,
+            "participantLimit": null,
+            "cutDown": null,
+            "publisher": null,
+            "like": 0,
+            "collect": 0,
+            "participant": 0,
+            "likeAlready": false,
+            "collectAlready": false,
+            "participantAlready": false,
+            "commentList": null,
+            "participantList": null
+        },
+        {
+            "gid": 3,
+            "locationX": 114.35564666267396,
+            "locationY": 30.52807432000948,
+            "userId": 2,
+            "title": "武汉团建｜推荐8款好玩的桌游，疯狂上头!!!",
+            "content": "室内轰趴团建桌游玩什么❓\n桌游种类千千万‼\n不耗体力，氛围值拉满🤯\n-\n🫀德国心脏病❗\n德国心脏病是一款考验反应力的桌面游戏🎮\n包含一副水果卡牌➕按铃\nzui简单的玩法就是“凑水果”\n玩法：玩家轮流出牌，每位玩家出牌时需覆盖面前的卡牌，当桌面上出现总和为5的同类水果时，首先抢到铃的人可以获得桌面上全部卡牌，按错者接受惩罚，结束时手握卡牌数额zui多的人为获胜者。\n-\nUNO优诺\n🔸游玩性质：简单易上手，适合小白\n🔸道具：优诺专用扑克牌🃏🃏🃏\n🔸游戏规则：UNO牌分三类牌:数字牌(76张)、功能牌(24张)、万能牌(8张)，合计108张。《一起UNO》的欢乐场中包含同色全出(功能牌)与反弹牌(万能牌)....\n-\n狼人杀\n▪游玩性质：烧脑、逻辑推理；不适合纯小白组局，建议老带新\n▪道具：狼人杀纸牌（或白纸◻写角色也可）\n▪游戏目标：\n🕵村民目标:白天的时候处决所有的狼人\n👺狼人目标:黑夜的时候杀死所有的村民\n-\n干瞪眼\n🔺游玩性质：简单易上手，适合小白\n🔺道具：普通扑克牌\n🔺游戏规则：“大一”法则，对方出3，你只能出4或2；对方一对10，你只能一对J或一对2；对方出345（顺子），你只能出456（顺子）....\n-\n地产大亨\n🔹游玩性质：简单易上手，欢乐巨多\n🔹道具：大富翁纸牌\n🔹游戏规矩：投出骰子，按照骰子的步数在地图上前进。\n-\n-大富翁\n我不相信没有人下小时候没有玩过大富翁‼寒假捡起来的娱乐方式😅凭借我七寸不烂之舌苟到结局，虽然还是输了\n大富翁的系列有很多，后来发现还有古风的，地图有内务府，还有各式宫殿。\n-\n-阿瓦隆\n类似于狼人杀，但又不同于狼人杀，相较于狼人杀更侧重于互动性和逻辑推理和分析能力，还有一个优点就是它没有mc，人数限额也比较小。\n-\n-剧本杀\n剧本杀算是破冰游戏的一大门类吧，对于戏精们来说可谓是找到了自己的舞台，不过有个致命点是游戏时间较长，如果遇到猪队友和代入感差的mc会不太过瘾，对于本子的要求也比较高，不过偶尔也可以玩一下\n-\n💯，喜欢桌游的小伙伴们赶紧准备起来吧！\n关注我，更多超多团建方案等你来\n公司团建，免费策划方案+执行\n有问题，留言&直接私信",
+            "timestamp": [
+                2024,
+                4,
+                15,
+                15,
+                41,
+                47,
+                612188000
+            ],
+            "type": "娱乐",
+            "images": "[]",
+            "tag": "[好友,最近]",
+            "payment": null,
+            "deadline": [
+                2024,
+                5,
+                15,
+                0,
+                4,
+                12
+            ],
+            "participantLimit": 1,
+            "cutDown": null,
+            "publisher": null,
+            "like": 0,
+            "collect": 0,
+            "participant": 0,
+            "likeAlready": false,
+            "collectAlready": false,
+            "participantAlready": false,
+            "commentList": null,
+            "participantList": null
+        },
+        {
+            "gid": 4,
+            "locationX": 114.35508693517221,
+            "locationY": 30.535908751195763,
+            "userId": 1,
+            "title": "10款经典必玩的桌游~最后一种最好玩！",
+            "content": "给大家介绍10款经典必玩桌游，最后一种最好玩！\n《万智牌》\n可以说式集换式卡牌游戏的始祖，也是极其受欢迎的卡牌游戏之一。\n\n《UNO》\n被誉为世界上zui好玩的纸牌。因为简单好上手，其设计也轻便，成为很多人茶余饭后的经典项目。\n\n《狼人杀》\n很多人可能不知道什么是桌游，但是肯定玩过狼人杀，是一款经典的身份推理桌游。\n\n《阿瓦隆》\n被称为“二代狼人杀”。因为每一个角色都很有参与感，所以也备受欢迎。\n\n《三国杀》\n三国是一个永无穷尽的话题。\n\n《璀璨宝石》\n推新利器，机制简单。因其策略性很强，还有国际赛事。\n\n《卡坦岛》\n推新必玩经典桌游。卡坦岛虽然是一款策略思考的桌游，但是对于新人来说很友好，同时不乏趣味性，是很多人的启蒙桌游。\n\n《卡卡颂》\n卡卡颂是一个有着众多扩展的系列游戏。其地位不亚于卡坦岛。\n\n《重塑火星》\n德策中的经典，游戏背景和玩法融合的非常好。思考量足，拿分手段多样，互动性少不太容易被干扰。\n\n《麻将》\n老少咸宜，逢年过节聚会必备项目。\n\n你心目中的桌游Top10是？\n来加入我们武汉组局吧，超多武汉同城搭子陪你一起玩！",
+            "timestamp": [
+                2024,
+                4,
+                15,
+                15,
+                41,
+                47,
+                612188000
+            ],
+            "type": "招募",
+            "tag": "[好友,最近]",
+            "images": "[]",
+            // 1713188968403, 1713189005327, 1713189007120
+            "payment": null,
+            "deadline": [
+                2024,
+                5,
+                16,
+                23,
+                41,
+                14
+            ],
+            "participantLimit": 6,
+            "cutDown": null,
+            "publisher": {
+                "userImage": 1713188968403,
+                "id": 1
+            },
+            "like": 0,
+            "collect": 0,
+            "participant": 0,
+            "likeAlready": false,
+            "collectAlready": false,
+            "participantAlready": false,
+            "commentList": null,
+            "participantList": null
+        }
+    ]
+}
+loadgame(eventData);
+// var eventData = JSON.parse(localStorage.getItem("data"));//获取eventData   
+        function loadgame(eventData) {
+            var serverUrl = "http://116.62.176.59:8080/xqlgq/files/";
+            eventData.list.forEach(function (data) {
+                var coordinates = [data.locationX, data.locationY];
+                var markerContent;
+                var imageURL = data.publisher.userImage;
+                '<img src="' + imageURL + '" class="avatar-background-help">';
+
+                markerContent = '<div class="custom-marker">' +
+                    '<img src="' + imageURL + '" class="avatar-background-help">' + // 发送请求获取用户头像URL
+                    '   <img src="https://i.postimg.cc/BZ1Vx7RL/2.png" class="avatar-help">' + // 定位图标
+                    '</div>';
+
+
+                var marker = new AMap.Marker({
+                    position: coordinates,
+                    content: markerContent,
+                    clickable: true,//图标可点击
+                    offset: new AMap.Pixel(0, 0),
+                    eventID: data.gid,
+                    eventUser: data.userId,
+                    eventType: data.type,
+                    eventTime: data.timestamp,
+                    eventTitle: data.title,
+                    eventContent: data.content,
+                    eventImageList: data.images,
+                    eventPayment: data.payment,
+                    eventDeadline: data.deadline,
+                    eventParticipantList: data.participantList,
+                    eventLike: data.like
+                });
+
+                markers.push(marker);
+                var infoMarkerContent;
+                // 创建信息框的内容
+                var truncatedContent = data.content.length > 20 ? data.content.substring(0, 20) + '...' : data.content;
+                infoMarkerContent = '<div class="info-marker-game">';
+                infoMarkerContent += '<div class="info-left-container-game">';
+                infoMarkerContent += '<p class="event_title_game">' + data.title + '</p>'; // 标题在最上面
+                infoMarkerContent += '<div class="info-text-game">' + '<p>' + truncatedContent + '</p>' + '</div>';
+                // 检查是否有图片内容
+                if (data.images && data.images.length > 2) {
+                    // data.images && data.images.length > 2
+                    // 将字符串转换为数组
+                    var dataImagesArray = JSON.parse(data.images);
+                    // 提取索引范围为 0 到 12 的元素，并将它们连接成一个字符串
+                    var slicedString = dataImagesArray.slice(0, 1).join('');
+                    var firstImageId = slicedString;
+                    // 拼接第一张图片的完整链接
+                    var firstImageUrl = serverUrl + firstImageId;
+                    // console.log(firstImageUrl);
+                    // firstImageUrl = "https://img95.699pic.com/photo/50133/0742.jpg_wh860.jpg";
+                    // 将第一张图片添加到信息框中
+                    infoMarkerContent += '<div class="info-image">';
+                    infoMarkerContent += '<img src="' + firstImageUrl + '">';
+                    infoMarkerContent += '</div>';
+                }
+                else if (data.tag) {
+                    var tagsString = JSON.stringify(data.tag);
+                    // 然后我们需要将这个 JSON 字符串解析回数组
+                    var tagsArray = JSON.parse(tagsString);
+                    infoMarkerContent += '<div class="info-tags">';
+                    if (tagsArray.includes("好友")) {
+                        infoMarkerContent += '<p class="tag-friend">' + "好友" + '</p>';
+                    };
+                    if (tagsArray.includes("最近")) {
+                        infoMarkerContent += '<p class="tag-game">' + "最近" + '</p>';
+                    }
+                    if (tagsArray.includes("娱乐")) {
+                        infoMarkerContent += '<p class="tag-game">' + "娱乐" + '</p>';
+                    }
+                    infoMarkerContent += '</div>';
+                }
+                infoMarkerContent += '</div>'; // 左侧容器结束
+
+                if (data.deadline && data.deadline.length > 2) {
+                    
+                    // 添加右侧容器
+                    infoMarkerContent += '<div class="info-right-container-game">';
+                    infoMarkerContent += '<svg class="icon time-icon" aria-hidden="true">';
+                    infoMarkerContent += '<use xlink:href="#icon-daojishi1"></use>';
+                    infoMarkerContent += '</svg>';
+                    // 添加倒计时到信息框中
+                    infoMarkerContent += '<p id="' + data.gid + '" class="countdown-time" ></p>';
+                    infoMarkerContent += '</div>'; // 右侧容器结束
+                        var end = JSON.stringify(data.deadline);
+                        var time = JSON.parse(end);
+                        var year=parseInt((time[0]));
+                        var month=parseInt((time[1]));
+                        var day=parseInt((time[2]));
+                        var hour=parseInt((time[3]));
+                        var minute=parseInt((time[4]));
+                        var dateParts = [year, month, day, hour, minute];
+                        var date = new Date(dateParts[0], dateParts[1], dateParts[2], dateParts[3], dateParts[4], 0);
+                        var endTime = date; // 获取目标的日期值为：2024/4/11 00:00:00;
+                        setInterval(function () {
+                            var now = new Date(); // 获取当前时间
+                            var diff = endTime.getTime() - now.getTime(); // 获取距离目标时间的毫秒数
+                            diff = parseInt(diff / 1000); // 转换成秒数
+                            var days = parseInt(diff / (24 * 3600)); // 获取天数
+                            var hours = parseInt(diff % (24 * 3600) / 3600); // 获取小时
+                            var minutes = parseInt(diff % 3600 / 60); // 获取分钟
+                            var seconds = diff % 60; // 获取秒数
+    
+                            // 格式化显示倒计时
+                            var countdownTime = formatTwoDigits(days) + ":" + formatTwoDigits(hours) + ":" + formatTwoDigits(minutes) + ":" + formatTwoDigits(seconds);
+                            // 更新倒计时显示
+                            document.getElementById(data.gid).textContent = countdownTime;
+                        }, 1000); // 刷新间隔为1秒
+    
+                        // 格式化数字为两位数
+                        function formatTwoDigits(num) {
+                            return num < 10 ? "0" + num : num;
+                        }
+                        // 信息框内容结束
+                    }
+                    // 信息框内容结束
+                infoMarkerContent += '</div>'; // 信息框结束    
+                // 创建信息框的标记，并添加到地图中
+                var infoMarker = new AMap.Marker({
+                    position: coordinates,
+                    content: infoMarkerContent,
+                    offset: new AMap.Pixel(40, 0), // 位置偏移以显示在原标记上方
+                    eventID: data.gid,
+                    zIndex: 1000, // 确保信息框在顶层
+                    clickable: true, // 使信息框不可点击
+                    relatedMarker: marker, // 将 marker 关联到 infoMarker 的自定义属性 relatedMarker 中
+                    flag: true,//记录infomarker的显示情况
+                });
+
+                infoMarker.flag = true;
+                infoMarkers.push(infoMarker);
+                // 将原标记的标记添加到地图中
+
+                infoMarker.on('touchend', function (e) {
+                    // alert("aa");
+                    // GoEvent(2);
+                    var infoMarker = e.target;
+                    var marker = infoMarker.relatedInfoMarker;
+                    infoMarker.relatedMarker = marker;
+                    console.log("go-event" + infoMarker._opts.eventID);
+                    var eventID = parseInt(infoMarker._opts.eventID);
+                    GoEvent(eventID);
+                });;
+                var startTime;
+                marker.on('touchstart', function (e) {
+                    startTime = new Date().getTime(); // 记录触摸开始时间
+                });
+
+                marker.on('touchend', function (e) {
+                    var endTime = new Date().getTime(); // 记录触摸结束时间
+                    var duration = endTime - startTime; // 计算触摸持续时间
+                    var marker = e.target;
+                    var infoMarker = marker.infoMarker;
+                    var flag = infoMarker.flag;
+
+
+                    // 如果持续时间小于0.1秒，则执行操作1
+                    if (duration < 100) {
+                        // 执行操作1
+                        console.log("收起信息框" + marker._opts.eventID);
+
+                        if (flag) {
+                            // 如果infoMarker已经在地图上，则隐藏它
+                            infoMarker.setMap(null);
+                            infoMarker.flag = false;
+                        } else {
+                            // 如果infoMarker不在地图上，则显示它
+                            infoMarker.setMap(map);
+                            infoMarker.flag = true;
+                        }
+                    }
+                    // 如果持续时间大于1秒，则执行操作2
+                    else if (duration > 500) {
+                        // 执行操作2
+                        var eventUser = parseInt(marker._opts.eventUser);
+                        GoUser(eventUser);
+                        console.log("打开用户信息" + marker._opts.eventUser);
+                    }
+                });
+
+                marker.infoMarker = infoMarker;
+
+            });
+            map.add(markers);
+            map.add(infoMarkers);
+        }
+    </script>
+    <script type="text/javascript" src="https://gitee.com/dcloud/uni-app/raw/dev/dist/uni.webview.1.5.4.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+  }
+.map-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 110%;
+  }
+
+  body{
+    overflow: hidden;
+  }
+.custom-marker {
+    position: relative;
+    width: 25px;
+    height: 34px;
+  }
+  
+  .avatar-background-help,
+  .avatar-help {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .avatar-help {
+    width: 40px;
+    height: auto;
+  }
+  
+  .avatar-background-help {
+    z-index: -1; /* 确保背景图片在底层 */
+    width: 29px; /* 调整背景宽度为比avatar更大的值 */
+    border-radius: 50%;
+    left:5px;
+    margin-top: 5px;
+  }
+  .info-marker-game {
+    background-color: white;
+    width: auto;
+    height: auto; /* 改为自动高度 */
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;  
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(81, 105, 187, 0.3); /* 添加外阴影 */
+    display: flex; /* 使用 Flexbox 布局 */
+    flex-direction: row; /* 水平方向排列子元素 */
+    justify-content: center; /* 水平居中 */
+    padding-right: 5px; /* 减少顶部内边距 */
+  }
+  .info-left-container-game {
+    min-width: 100px;
+    display: flex; 
+    flex-direction: column; /* 垂直方向排列子元素 */
+    padding-right: 4px;
+    margin:4px;
+    justify-content: flex-end;
+  } 
+  
+  .info-right-container-game {
+    margin-top: 2px;
+    align-items: center; /* 垂直居中 */
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: center; /* 水平居中 */
+    flex-direction: column; /* 垂直方向排列子元素 */
+    align-items: center;
+    border-left: 2px solid #76b4b1;; /* 添加左侧竖线 */ 
+    padding-left: 5px; /* 调整左侧间距 */
+    font-size: 4px;
+  }
+  .countdown-time{
+      margin:5px;
+      padding: 3px;
+      font-family: 微软雅黑;
+      font-size: 4px;
+      color: #07a082;
+      font-weight: bold;
+  }
+  .event_title_game {
+    font-family: 微软雅黑;
+    font-size: 9px;
+    font-weight: bold;
+    color: #017d6a;
+  }
+  .info-text-game p {
+    font-family: 华文细黑;
+    font-size: 7px;
+  }
+  
+  .info-marker-game .info-text-game {
+    display: flex; /* 启用 Flexbox 布局 */
+    flex-direction: column; /* 子元素垂直排列 */
+    font-family: 华文细黑;
+    line-height: 100%;
+  }
+  .info-marker-game .info-image {
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+  }
+  .info-marker-game img {
+    width: 85px;
+    height: auto;
+    object-fit: cover; /* 图片填充 */
+  }
+
+  
+  .info-users{
+    font-family:黑体;
+    font-size: 7px;
+    display: flex;
+    color: #127566;
+    margin-top: 5px;
+    justify-content: flex-end; /* 将子元素推到容器的末端，即右边 */
+  }
+
+  .time-icon {
+    width: 20px; height: 20px;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+/* 定义从下向上浮现动画 */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0; /* 初始透明度为 0，隐藏 */
+      transform: translateY(20%); /* 初始位置在底部，向下偏移 100% */
+  }
+  100% {
+      opacity: 1; /* 最终透明度为 1，完全显示 */
+      transform: translateY(0); /* 结束位置在顶部，不偏移 */
+  }
+}
+
+/* 将动画应用到 Marker 内容上 */
+.custom-marker {
+  animation: fadeInUp 0.5s ease-out; /* 使用 fadeInUp 动画，时长 1 秒，使用 ease-out 缓动函数 */
+}
+
+
+/* 定义从左向右浮现动画 */
+@keyframes slideInLeft {
+  0% {
+      opacity: 0; /* 初始透明度为 0，隐藏 */
+      transform: translateX(-20%); /* 初始位置在左侧，向左偏移 100% */
+  }
+  100% {
+      opacity: 1; /* 最终透明度为 1，完全显示 */
+      transform: translateX(0); /* 结束位置在右侧，不偏移 */
+  }
+}
+
+/* 将动画应用到 infoMarkerContent 上 */
+.info-marker-game {
+  animation: slideInLeft 0.5s ease-out; /* 使用 slideInLeft 动画，时长 1 秒，使用 ease-out 缓动函数 */
+}

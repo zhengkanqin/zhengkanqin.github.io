@@ -1,0 +1,42 @@
+<template>
+	<view>
+		<uv-picker ref="picker" :columns="columns" keyName="name" @confirm="confirm"></uv-picker>
+		<button @click="openPicker">打开</button>
+	</view>
+</template>
+<script>
+	export default {
+		data() {
+			return {
+				columns: [
+					[{
+						name: '中国'
+					},{
+						name: '美国'
+					},{
+						name: '日本'
+					}]
+				]
+			}
+		},
+		onReady() {
+			setTimeout(()=>{
+				this.columns = [[{
+						name: '中国1'
+					},{
+						name: '美国1'
+					},{
+						name: '日本1'
+					}]]
+			},3000)
+		},
+		methods: {
+			openPicker() {
+				this.$refs.picker.open();
+			},
+			confirm(e) {
+				console.log('confirm', e);
+			}
+		}
+	}
+</script>

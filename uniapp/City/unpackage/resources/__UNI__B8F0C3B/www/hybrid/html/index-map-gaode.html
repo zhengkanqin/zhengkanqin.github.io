@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <title>HELLO，AMAP!</title>
+  <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+  <style>
+    html,
+    body,
+    #container {
+      height: 110%;
+      width: 100%;
+    }
+
+    .amap-icon img,
+    .amap-marker-content img {
+      width: 25px;
+      height: 34px;
+    }
+
+    .cus_info_window {
+      background-color: #fff;
+      padding: 10px;
+    }
+	body{
+		overflow: hidden;
+	}
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=e6f1f4e055473ea3c19b415f55ff72fb"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+  <script type="text/javascript">
+    // 创建地图实例
+    var map = new AMap.Map("container", {
+      pitch: 50, //地图俯仰角度，有效范围 0 度- 83 度
+      viewMode: '3D', //地图模式
+      rotateEnable: true, //是否开启地图旋转交互 鼠标右键 + 鼠标画圈移动 或 键盘Ctrl + 鼠标左键画圈移动
+      pitchEnable: true, //是否开启地图倾斜交互 鼠标右键 + 鼠标上下移动或键盘Ctrl + 鼠标左键上下移动
+      zoom: 17, //初始化地图层级
+      rotation: -15, //初始地图顺时针旋转的角度
+      zooms: [2, 20], //地图显示的缩放级别范围
+      center: [116.333926, 39.997245] //初始地图中心经纬度
+    });
+
+    // 创建多边形覆盖物
+    var polygon = new AMap.Polygon({
+      path: [
+        [116.402926, 39.900245],
+        [116.402926, 39.930245],
+        [116.450926, 39.930245],
+        [116.450926, 39.900245]
+      ],
+      strokeColor: "#FF33FF", //线颜色
+      strokeOpacity: 0.2, //线透明度
+      strokeWeight: 3, //线宽
+      fillColor: "#1791fc", //填充色
+      fillOpacity: 0.35 //填充透明度
+    });
+    map.add(polygon);
+
+  </script>
+</body>
+
+</html>

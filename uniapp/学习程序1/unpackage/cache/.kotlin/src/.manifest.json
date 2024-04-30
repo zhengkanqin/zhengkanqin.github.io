@@ -1,0 +1,20 @@
+{
+  "version": "1",
+  "env": {
+    "compiler_version": "4.08"
+  },
+  "files": {
+    "pages/index/index.kt": {
+      "md5": "47d20ff6d78ed5178afa3e8546efb21af3c76169",
+      "class": "GenPagesIndexIndex"
+    },
+    "pages/demo1/demo1.kt": {
+      "md5": "1400ab4bdf96a347c9eb8b2c4dd5f33fcc54ffc0",
+      "class": "GenPagesDemo1Demo1"
+    },
+    "index.kt": {
+      "class": "",
+      "md5": "5f2946bad4c48195c812f001f2d5c74d84733557"
+    }
+  }
+}

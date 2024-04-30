@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>sportsmap</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://at.alicdn.com/t/c/font_4516945_tndun2w9fd.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <!-- 引入高德地图的JavaScript库，并指定需要的插件 AMap.ToolBar -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ec334f27789fb7c641a7db923e768679&plugin=AMap.ToolBar"></script>
+    <script>
+        GoEvent = (id) => {
+            uni.navigateTo({
+                'url': "/pages/titleContent/titleContent?id=" + id
+            })
+        };
+    </script>
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+    <script>
+        // 确保 AMap 对象已经加载
+        if (window.AMap) {
+            // 初始化地图
+            var map = new AMap.Map('container', {
+                zoom: 15,
+                minZoom: 13, // 设置地图允许的最小缩放级别为 13
+                maxZoom: 20, // 设置地图允许的最大缩放级别为 20
+                center: [114.371713, 30.542335],
+                resizeEnable: true,
+                mapStyle: "amap://styles/fresh" // 地图样式
+            });
+        } else {
+            console.error('AMap library is not loaded properly.');
+        }
+    </script>
+    <script>
+        const dataSports= {}
+        Object.defineProperty(dataSports, 'property', {
+            get: function () {
+                console.log('Getting property value');
+                return this._property;
+            },
+            set: function (value) {
+                console.log('Setting property value to ' + value);
+                this._property = value;
+                loadSports(value);
+            }
+        });
+    </script>
+    <script>
+
+        function loadSports(eventData){
+        var markers = [];
+        var serverUrl = "http://116.62.176.59:8080/xqlgq/files/1713974275994";
+        eventData.list.forEach(function (data) {
+            var coordinates = [data.locationX, data.locationY];
+            var markerContent;
+            var tagsString = JSON.stringify(data.tag);
+
+            // 然后我们需要将这个 JSON 字符串解析回数组
+            var tagsArray = JSON.parse(tagsString);
+
+            if (tagsArray.includes("篮球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon basketball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-lanqiu"></use>' +
+                    '</svg>' + 
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("排球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-paiqiu"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("游泳")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-youyongguan"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("体操")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-yishuticao"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("象棋")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-che"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("围棋")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-weiqi1"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("太极")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-taiji"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("骑行")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-zihangche"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("瑜伽")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-yuqie"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("跳舞")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-xuetiaowu"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("羽毛球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-yumaoqiu"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            } else if (tagsArray.includes("足球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-yundong-tizuqiu"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else if (tagsArray.includes("乒乓球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-Tennis-b"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            } else if (tagsArray.includes("高尔夫")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-gaoerfutiyuyundong"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            } else if (tagsArray.includes("保龄球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-a-bowlingbaolingqiutiyuyundong"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            } else if (tagsArray.includes("田径")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-tianjing"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            } else if (tagsArray.includes("台球")) {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-Pool"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+            else {
+                markerContent = '<div class="custom-marker">' +
+                    '<div class="icon-wrapper">' + // 新增了一个包裹 SVG 的 div
+                    '<svg class="icon baseball-icon" aria-hidden="true">' +
+                    '<use xlink:href="#icon-tiyu"></use>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<img src= "http://116.62.176.59:8080/xqlgq/files/1713974275994" class="avatar" style="position: absolute;">' + // 定位图标
+                    '</div>';
+            }
+
+            var marker = new AMap.Marker({
+                position: coordinates,
+                content: markerContent,
+                clickable: true,//图标可点击
+                offset: new AMap.Pixel(0, 0),
+                eventID: data.gid,
+                eventUser: data.userId,
+                eventType: data.type,
+                eventTime: data.timestamp,
+                eventTitle: data.title,
+                eventContent: data.content,
+                eventImageList: data.images,
+                eventPayment: data.payment,
+                eventDeadline: data.deadline,
+                eventParticipantList: data.participantList,
+                eventLike: data.like
+            });
+            markers.push(marker);
+
+            marker.on('touchend', function (e) {
+                var marker = e.target;
+                console.log("go-event" + marker._opts.eventID);
+                var eventID = parseInt(marker._opts.eventID);
+                GoEvent(eventID);
+            });
+        });
+        map.add(markers);
+        }  
+    </script>
+      <script type="text/javascript" src="https://gitee.com/dcloud/uni-app/raw/dev/dist/uni.webview.1.5.4.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<template>
+	<view class="drawer">
+		<image @click="closePop" class="close" src="../../static/7.png" mode=""></image>
+		<view class="drawer-box-title"><text class="drawer-box-title-text">分享</text></view>
+		<view class="drawer-box">
+			<block v-for="(item, i) in list" :keep-index="i">
+				<view class="drawer-box-item" @click="funShare(item)">
+					<image class="drawer-box-item-img" :src="item.path" mode=""></image>
+					<text class="drawer-box-item-text">{{ item.name }}</text>
+				</view>
+			</block>
+		</view>
+	</view>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			list: [
+				{ id: 1, name: 'QQ好友', path: '../../static/3.png' },
+				{ id: 2, name: 'QQ微博', path: '../../static/4.png' },
+				{ id: 3, name: '微信好友', path: '../../static/5.png' },
+				{ id: 4, name: '微信朋友圈', path: '../../static/6.png' }
+			]
+		};
+	},
+	methods: {
+		funShare(item) {
+			uni.showToast({
+				title: item.name,
+				icon:"none"
+			});
+		},
+		closePop() {
+			uni.$emit('funDrawer', {
+				type: 1
+			});
+		}
+	}
+};
+</script>
+
+<style>
+.drawer {
+	width: 750rpx;
+	height: 340rpx;
+	padding: 0 24rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	border-radius: 30rpx 30rpx 0 0;
+}
+.drawer-box-title {
+	width: 702rpx;
+	padding-bottom: 40rpx;
+	box-sizing: border-box;
+	margin-top: 50rpx;
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	justify-content: center;
+	border-bottom: 1px solid #f1f1f1;
+}
+.drawer-box-title-text {
+	font-size: 32rpx;
+	font-weight: 600;
+}
+.close {
+	width: 70rpx;
+	height: 70rpx;
+	position: absolute;
+	right: 40rpx;
+	top: 35rpx;
+}
+.drawer-box {
+	width: 702rpx;
+	margin-top: 50rpx;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+.drawer-box-item {
+	width: 175.5rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.drawer-box-item-img {
+	width: 70rpx;
+	height: 70rpx;
+}
+.drawer-box-item-text {
+	font-size: 26rpx;
+	font-weight: 500;
+	margin-top: 20rpx;
+	color: #666;
+}
+</style>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>food</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://at.alicdn.com/t/c/font_4517146_sk6me7pwoc.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <!-- 引入高德地图的JavaScript库，并指定需要的插件 AMap.ToolBar -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ec334f27789fb7c641a7db923e768679&plugin=AMap.ToolBar"></script>
+    <script>
+        GoEvent = (id) => {
+            uni.navigateTo({
+                'url': "/pages/titleContent/titleContent?id=" + id
+            })
+        };
+    </script>
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+    <script>
+        // 确保 AMap 对象已经加载
+        if (window.AMap) {
+            // 初始化地图
+            var map = new AMap.Map('container', {
+                zoom: 15,
+                minZoom: 13, // 设置地图允许的最小缩放级别为 13
+                maxZoom: 20, // 设置地图允许的最大缩放级别为 20
+                center: [114.371713, 30.542335],
+                resizeEnable: true,
+                mapStyle: "amap://styles/fresh" // 地图样式
+            });
+        } else {
+            console.error('AMap library is not loaded properly.');
+        }
+    </script>
+    <script>
+        const dataFood = {}
+        Object.defineProperty(dataFood, 'property', {
+            get: function () {
+                console.log('Getting property value');
+                return this._property;
+            },
+            set: function (value) {
+                console.log('Setting property value to ' + value);
+                this._property = value;
+                loadfood(value);
+            }
+        });
+    </script>
+    <script>
+        function loadfood(Dataacademic){
+        var markers = [];
+        var infoMarkers = [];
+        // // localStorage.setItem("data", JSON.stringify(Dataacademic));
+        // var Dataacademic = JSON.parse(localStorage.getItem("data"));//获取eventData
+        var serverUrl = "http://116.62.176.59:8080/xqlgq/files/";
+        Dataacademic.list.forEach(function (data) {
+            var coordinates = [data.locationX, data.locationY];
+            var markerContent;
+            markerContent = '<div class="custom-marker">';
+            if (data.images && data.images.length > 2) {
+                // 将字符串转换为数组 data.images && data.images.length > 2
+                var dataImagesArray = JSON.parse(data.images);
+                // 提取索引范围为 0 到 12 的元素，并将它们连接成一个字符串
+                var slicedString = dataImagesArray.slice(0, 1).join('');
+                var firstImageId = slicedString;
+                // 拼接第一张图片的完整链接
+                var firstImageUrl = serverUrl + firstImageId;
+                // firstImageUrl="https://youimg1.c-ctrip.com/target/tg/041/450/936/21ab64c246a545f69b5d05d6945785fc.jpg";
+                // console.log(firstImageUrl);
+                // 将第一张图片添加到信息框中
+                markerContent += '<div class="info-image">';
+                markerContent += '<img src="' + firstImageUrl + '">';
+                markerContent += '</div>';
+            }
+            else {
+                var title = data.title;
+                markerContent += '<div class="event_title">' + title + '</div>';
+            }
+            markerContent += '</div>'
+
+
+            var marker = new AMap.Marker({
+                position: coordinates,
+                content: markerContent,
+                clickable: true,//图标可点击
+                offset: new AMap.Pixel(0, 0),
+                eventID: data.gid,
+                eventUser: data.userId,
+                eventType: data.type,
+                eventTime: data.timestamp,
+                eventTitle: data.title,
+                eventContent: data.content,
+                eventImageList: data.images,
+                eventPayment: data.payment,
+                eventDeadline: data.deadline,
+                eventParticipantList: data.participantList,
+                eventLike: data.like
+            });
+
+            markers.push(marker);
+
+            marker.on('touchend', function (e) {
+                var marker = e.target;
+                var eventEvent = parseInt(marker._opts.eventUser);
+                GoEvent(eventEvent);
+                console.log("go-event" + marker._opts.eventID);
+            });
+        });
+        map.add(markers);
+        map.add(infoMarkers);
+        }  
+    </script>
+      <script type="text/javascript" src="https://gitee.com/dcloud/uni-app/raw/dev/dist/uni.webview.1.5.4.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+{
+  "hash": "c3b5bb6f",
+  "browserHash": "bba02256",
+  "optimized": {
+    "china-area-data": {
+      "src": "../../node_modules/china-area-data/data.js",
+      "file": "china-area-data.js",
+      "fileHash": "2f4fcddd",
+      "needsInterop": true
+    }
+  },
+  "chunks": {}
+}

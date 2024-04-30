@@ -1,0 +1,275 @@
+{
+	"pages": [	
+		{
+			"path" : "pages/Login/Login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/LoginAccount/LoginAccount",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+				//
+				
+				//
+			}
+		},
+		{
+			"path" : "pages/myFriends/myFriends",
+			"style" : 
+			{
+				"navigationBarTitleText" : "123",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/chatToFriends/chatToFriends",
+			"style" : 
+			{
+				"navigationBarTitleText" : "123",
+				"enablePullDownRefresh" : true
+			}
+		},
+		{
+			"path" : "pages/Myself/Myself",
+			"style" : 
+			{
+				"navigationBarTitleText" : "122",
+				"enablePullDownRefresh" : true
+			}
+		},
+		{
+			"path" : "pages/titleContent/titleContent",
+			"style" : 
+			{
+				"navigationBarTitleText" : "1223",
+				"enablePullDownRefresh" : true
+			}
+		},
+		{
+			"path" : "pages/Register/Register",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/privacy/privacy",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/UserShow/UserShow",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/ChangeInformation/ChangeInformation",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/searchFriends/searchFriends",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/ChangeInformation/ChangeUserImg",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/ChangeInformation/ChangeBackImg/ChangeBackImg",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/ChangeInformation/ChangeCity/ChangeCity",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/PutEvent/PutEvent",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/search/search",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/indexMap",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/Study",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/Sport",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/Volunteer",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/Game",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/Food",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/ManyInformation/ManyInformation",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/Notice/Notice",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/friendCricle/friendCricle",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/relationship/relationship",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/indexMap/myMap/myMap",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app x",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"redDotColor":"#62d582",
+		"color":"#5e5e63",
+		"selectedColor":"#18946b",
+		"backgroundColor": "#FFFFFF",
+		"fontSize": "12px",
+		"iconWidth": "28px",
+		"height":"60px",
+		"spacing":"5px",
+		"borderStyle": "#ffffff",
+		"midButton": {
+			"width": "65px",
+			"height": "80px",
+			"backgroundImage": "static/buttomSrc/putNew.png"
+		},
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/buttomSrc/BeforeWorld.png",
+				"selectedIconPath": "static/buttomSrc/AfterWorld.png"
+			},
+			{
+				"pagePath": "pages/myFriends/myFriends",
+				"iconPath": "static/buttomSrc/BeforeFriends.png",
+				"selectedIconPath": "static/buttomSrc/AfterFriends.png"
+			},
+			{
+				"pagePath": "pages/chatToFriends/chatToFriends",
+				"iconPath": "static/buttomSrc/beforeChat.png",
+				"selectedIconPath": "static/buttomSrc/AfterChat.png"
+			},
+			{
+				"pagePath": "pages/Myself/Myself",
+				"iconPath": "static/buttomSrc/BeforeMyself.png",
+				"selectedIconPath": "static/buttomSrc/AfterMyself.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}

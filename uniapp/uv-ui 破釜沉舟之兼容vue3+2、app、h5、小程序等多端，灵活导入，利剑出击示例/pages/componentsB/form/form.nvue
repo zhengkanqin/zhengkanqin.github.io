@@ -1,0 +1,440 @@
+<template>
+	<view class="uv-page" style="background-color: #fff;">
+		<view class="uv-demo-block">
+			<text class="uv-demo-block__title">基础使用</text>
+			<view class="uv-demo-block__content">
+				<!-- 注意，如果需要兼容微信小程序，最好通过setRules方法设置rules规则 -->
+				<uv-form
+					labelPosition="left"
+					labelWidth="80"
+					:model="model1"
+					ref="form1"
+				>
+					<uv-form-item
+						label="姓名"
+						prop="userInfo.name"
+						borderBottom
+						labelWidth="80"
+						ref="item1"
+					>
+						<uv-input
+							v-model="model1.userInfo.name"
+							border="none"
+							placeholder="姓名,只能为中文"
+						></uv-input>
+					</uv-form-item>
+					<uv-form-item
+						label="性别"
+						prop="userInfo.sex"
+						borderBottom
+						labelWidth="80"
+						@click="showSexSelect"
+						ref="item1"
+					>
+						<uv-input
+							v-model="model1.userInfo.sex"
+							disabled
+							disabledColor="#ffffff"
+							placeholder="请选择性别"
+							border="none"
+						></uv-input>
+						<template v-slot:right>
+							<uv-icon
+								name="arrow-right"
+							></uv-icon>
+						</template>
+					</uv-form-item>
+					<uv-form-item
+						label="水果"
+						prop="radiovalue1"
+						borderBottom
+						labelWidth="80"
+						ref="item2"
+					>
+						<uv-radio-group v-model="model1.radiovalue1">
+							<uv-radio
+								:customStyle="{marginRight: '16px'}"
+								v-for="(item, index) in radiolist1"
+								:key="index"
+								:label="item.name"
+								:name="item.name"
+							>
+							</uv-radio>
+						</uv-radio-group>
+					</uv-form-item>
+					<uv-form-item
+						label="兴趣爱好"
+						prop="checkboxValue1"
+						borderBottom
+						labelWidth="80"
+						ref="item3"
+					>
+						<uv-checkbox-group
+							v-model="model1.checkboxValue1"
+							shape="square"
+						>
+							<uv-checkbox
+								:customStyle="{marginRight: '16px'}"
+								v-for="(item, index) in checkboxList1"
+								:key="index"
+								:label="item.name"
+								:name="item.name"
+							>
+							</uv-checkbox>
+						</uv-checkbox-group>
+					</uv-form-item>
+					<uv-form-item
+						label="简介"
+						prop="intro"
+						borderBottom
+						labelWidth="80"
+						ref="item3"
+					>
+						<uv-textarea
+							placeholder="不低于3个字"
+							v-model="model1.intro"
+							count
+						></uv-textarea>
+					</uv-form-item>
+					<uv-form-item
+						label="住店时间"
+						prop="hotel"
+						borderBottom
+						labelWidth="80"
+						@click="showTimeSelect"
+					>
+						<uv-input
+							v-model="model1.hotel"
+							disabled
+							disabledColor="#ffffff"
+							placeholder="请选择住店和离店时间"
+							border="none"
+						></uv-input>
+						<template v-slot:right>
+							<uv-icon
+								name="arrow-right"
+							></uv-icon>
+						</template>
+					</uv-form-item>
+					<uv-form-item
+						label="验证码"
+						prop="code"
+						borderBottom
+						labelWidth="80"
+					>
+						<uv-input
+							v-model="model1.code"
+							border="none"
+							placeholder="请填写验证码"
+						></uv-input>
+						<template v-slot:right>
+							<uv-button
+								@tap="getCode"
+								:text="tips"
+								type="success"
+								size="mini"
+								:disabled="disabled1"
+							></uv-button>
+						</template>
+					</uv-form-item>
+					<uv-form-item
+						label="生日"
+						prop="userInfo.birthday"
+						borderBottom
+						labelWidth="80"
+						@click="showDateSelect"
+						ref="item1"
+					>
+						<uv-input
+							v-model="model1.userInfo.birthday"
+							disabled
+							disabledColor="#ffffff"
+							placeholder="请选择生日"
+							border="none"
+						></uv-input>
+						<template v-slot:right>
+							<uv-icon
+								name="arrow-right"
+							></uv-icon>
+						</template>
+					</uv-form-item>
+				</uv-form>
+				<uv-button
+					type="primary"
+					text="提交"
+					customStyle="margin-top: 50px"
+					@click="submit"
+				></uv-button>
+				<uv-button
+					type="error"
+					text="重置"
+					customStyle="margin-top: 10px"
+					@click="reset"
+				></uv-button>
+				<view>
+				<uv-action-sheet
+					ref="sexSelect"
+					:actions="actions"
+					title="请选择性别"
+					description="如果选择保密会报错"
+					@select="sexSelect"
+				>
+				</uv-action-sheet>
+				<uv-calendar
+					ref="timeSelect"
+					mode="range"
+					startText="住店"
+					endText="离店"
+					confirmDisabledText="请选择离店日期"
+					:formatter="formatter"
+					@confirm="calendarConfirm"
+					@close="calendarClose"
+				></uv-calendar>
+				<uv-code
+					ref="uCode"
+					seconds="20"
+					@start="disabled1 = true"
+					@end="disabled1 = false"
+					@change="codeChange"
+				></uv-code>
+				<uv-datetime-picker
+					ref="dateSelect"
+					v-model="birthday"
+					mode="date"
+					closeOnClickOverlay
+					@confirm="birthdayConfirm"
+					@cancel="birthdayClose"
+					@close="birthdayClose"
+				></uv-datetime-picker>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import { toast,timeFormat } from '@/uni_modules/uv-ui-tools/libs/function/index.js';
+	import { chinese } from '@/uni_modules/uv-ui-tools/libs/function/test.js';
+	export default {
+		data() {
+			return {
+				fileList1: [],
+				disabled1: false,
+				tips: '',
+				value: '',
+				model1: {
+					userInfo: {
+						name: '楼兰',
+						sex: '',
+						birthday: ''
+					},
+					radiovalue1: '苹果',
+					checkboxValue1: [],
+					intro: '',
+					code: ''
+				},
+				birthday: Number(new Date()),
+				actions: [{
+						name: '男',
+					},
+					{
+						name: '女',
+					},
+					{
+						name: '保密',
+					},
+				],
+				rules: {
+					'userInfo.name': [{
+						type: 'string',
+						required: true,
+						message: '请填写姓名',
+						trigger: ['blur', 'change']
+					}, {
+						// 此为同步验证，可以直接返回true或者false，如果是异步验证，稍微不同，见下方说明
+						validator: (rule, value, callback) => {
+							// 调用uView自带的js验证规则，详见：https://www.uviewui.com/js/test.html
+							return chinese(value);
+						},
+						message: "姓名必须为中文",
+						// 触发器可以同时用blur和change，二者之间用英文逗号隔开
+						trigger: ["change", "blur"],
+					}],
+					code: {
+						type: 'string',
+						required: true,
+						len: 4,
+						message: '请填写4位验证码',
+						trigger: ['blur']
+					},
+					'userInfo.sex': {
+						type: 'string',
+						max: 1,
+						required: true,
+						message: '请选择男或女',
+						trigger: ['blur', 'change']
+					},
+					radiovalue1: {
+						type: 'string',
+						min: 1,
+						max: 2,
+						message: '橙子有毒',
+						trigger: ['change']
+					},
+					checkboxValue1: {
+						type: 'array',
+						min: 2,
+						required: true,
+						message: '不能太宅，至少选两项',
+						trigger: ['change']
+					},
+					intro: {
+						type: 'string',
+						min: 3,
+						required: true,
+						message: '不低于3个字',
+						trigger: ['change']
+					},
+					hotel: {
+						type: 'string',
+						min: 2,
+						required: true,
+						message: '请选择住店时间',
+						trigger: ['change']
+					},
+					'userInfo.birthday': {
+						type: 'string',
+						required: true,
+						message: '请选择生日',
+						trigger: ['change']
+					},
+				},
+				radiolist1: [{
+						name: '苹果',
+						disabled: false
+					},
+					{
+						name: '香蕉',
+						disabled: false
+					},
+					{
+						name: '毒橙子',
+						disabled: false
+					}
+				],
+				checkboxList1: [{
+						name: '羽毛球',
+						disabled: false
+					},
+					{
+						name: '跑步',
+						disabled: false
+					},
+					{
+						name: '爬山',
+						disabled: false
+					}
+				]
+			}
+		},
+		onReady() {
+			// 如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则
+			this.$refs.form1.setRules(this.rules)
+		},
+		methods: {
+			// 性别选择
+			showSexSelect() {
+				this.$refs.sexSelect.open();
+				this.hideKeyboard();
+			},
+			// 日历选择
+			showTimeSelect() {
+				this.$refs.timeSelect.open();
+				this.hideKeyboard();
+			},
+			// 性别选择
+			showDateSelect() {
+				this.$refs.dateSelect.open();
+				this.hideKeyboard();
+			},
+			afterRead(event) {
+				this.fileList1.push({
+					url: event.file,
+					status: 'uploading',
+					message: '上传中'
+				})
+			},
+			sexSelect(e) {
+				this.model1.userInfo.sex = e.name
+				this.$refs.form1.validateField('userInfo.sex')
+			},
+			formatter(day) {
+				const d = new Date()
+				let month = d.getMonth() + 1
+				const date = d.getDate()
+				if (day.month == month && day.day == date + 3) {
+					day.bottomInfo = '有优惠'
+					day.dot = true
+				}
+				return day
+			},
+			calendarConfirm(e) {
+				this.model1.hotel = `${e[0]} / ${e[e.length - 1]}`
+				this.$refs.form1.validateField('hotel')
+			},
+			codeChange(text) {
+				this.tips = text;
+			},
+			getCode() {
+				if (this.$refs.uCode.canGetCode) {
+					// 模拟向后端请求验证码
+					uni.showLoading({
+						title: '正在获取验证码'
+					})
+					setTimeout(() => {
+						uni.hideLoading();
+						// 这里此提示会被this.start()方法中的提示覆盖
+						toast('验证码已发送');
+						// 通知验证码组件内部开始倒计时
+						this.$refs.uCode.start();
+					}, 2000);
+				} else {
+					toast('倒计时结束后再发送');
+				}
+			},
+			calendarClose() {
+				this.$refs.form1.validateField('hotel')
+			},
+			birthdayClose() {
+				this.$refs.form1.validateField('userInfo.birthday')
+			},
+			birthdayConfirm(e) {
+				this.model1.userInfo.birthday = timeFormat(e.value, 'yyyy-mm-dd')
+				this.$refs.form1.validateField('userInfo.birthday')
+			},
+			// 提交
+			submit() {
+				// 如果有错误，会在catch中返回报错信息数组，校验通过则在then中返回true
+				this.$refs.form1.validate().then(res => {
+					toast('校验通过')
+				}).catch(errors => {
+					toast('校验失败')
+				})
+			},
+			// 重置
+			reset() {
+				const validateList = ['userInfo.name', 'userInfo.sex', 'radiovalue1', 'checkboxValue1', 'intro',
+				'hotel', 'code', 'userInfo.birthday']
+				this.$refs.form1.resetFields()
+				this.$refs.form1.clearValidate()
+				setTimeout(()=>{
+					this.$refs.form1.clearValidate(validateList)
+					// 或者使用 this.$refs.form1.clearValidate()
+				},10)
+			},
+			hideKeyboard() {
+				uni.hideKeyboard()
+			}
+		},
+	}
+</script>

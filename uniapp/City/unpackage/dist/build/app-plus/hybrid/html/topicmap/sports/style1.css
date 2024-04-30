@@ -1,0 +1,81 @@
+#container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 110%;
+}
+body{
+    overflow: hidden;
+  }
+
+  .custom-marker {
+    position: relative; /* 设置为相对定位 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+
+.icon-wrapper {
+    position: relative; /* SVG 相对定位 */
+    /* 其他样式，如大小等 */
+}
+
+.avatar {
+    position: absolute; /* 设置为绝对定位 */
+    height: 40px;
+    /* 根据需要设置图片的位置，例如： */
+    top: -3px; /* 图片顶部与父元素顶部对齐 */
+    left: -3px; /* 图片左侧与父元素左侧对齐 */
+    /* 如果需要，可以添加 z-index 属性来控制层叠上下文 */
+}
+/* 自定义 SVG 图标的样式 */
+.basketball-icon {
+    height: 25px;
+    width: 25px;
+}
+
+.baseball-icon {
+    height: 25px;
+    width: 25px;
+}
+
+.swimming-icon {
+    height: 30px;
+    width: 30px;
+}
+.yishuticao-icon {
+    height: 30px;
+    width: 30px;
+}
+.che-icon {
+    height: 30px;
+    width: 30px;
+}
+.else-icon {
+    height: 30px;
+    width: 30px;
+}
+
+
+@keyframes bounce {
+    0% {
+      transform: translateY(-50%); /* 开始时，物体在上方 */
+      opacity: 0; /* 开始时，物体完全透明 */
+    }
+    30% {
+      transform: translateY(0); /* 结束时，物体回到原位 */
+      opacity: 1; /* 结束时，完全不透明 */
+    }
+    70% {
+      transform: translateY(-20%); /* 物体弹起一小段距离 */
+    }
+    100% {
+      transform: translateY(0); /* 最终位置在顶部，不偏移 */
+    }
+  }
+  
+  .custom-marker {
+    animation: bounce 1s ease-in-out; /* 使用 bounce 动画，时长 1.5 秒，使用 ease-in-out 缓动函数 */
+  }
+  

@@ -1,0 +1,42 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "index"
+      }
+    },
+    {
+      "path": "pages/demo1/demo1",
+      "style": {
+        "navigationBarTitleText": "213",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app x",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+    // "navigationStyle": "custom" 可以让导航栏消失
+  },
+  
+  "tabBar": {
+    "color": "#ffffff",
+    "backgroundColor":"#000000",
+    "selectedColor": "#cdcdc1",
+    "list": [
+      {
+        "pagePath" : "pages/index/index",
+        "text": "我的"
+      },
+      {
+        "pagePath" : "pages/demo1/demo1",
+        "text": "切换"
+      }
+    ]
+  },
+  
+  "uniIdRouter": {}
+}

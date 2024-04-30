@@ -1,0 +1,4 @@
+
+.TopMargin {position: fixed;z-index: 100;background-color: #F1F5F7;height: 5.625rem;width: 100%;box-shadow: 0 0.09375rem 0.09375rem #dde1e2;display: flex;align-items: flex-end;}
+.标题文本{padding-bottom: 0.15625rem;font-size: 1.0625rem;margin:0.625rem;color: #282829;letter-spacing: 0.09375rem;margin-left:0;}
+.return{width: 1.40625rem;height: 1.40625rem;margin:0.625rem;margin-right: 0;}

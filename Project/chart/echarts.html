@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <style>
+        /* 默认按钮样式 */
+        #cyw, #lfy, #zdy, #zkq {
+            background-color: white;
+            color: #00FFFF;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: 2px solid #00FFFF;
+            border-radius: 4px;
+            transition: background-color 0.3s; /* 添加过渡效果 */
+        }
+
+            /* 点击时的高亮样式 */
+            #cyw.highlighted {
+                background-color: #00FFFF;
+                color: white; /* 白色文字 */
+            }
+            #lfy.highlighted {
+                background-color: #00FFFF;
+                color: white; /* 白色文字 */
+            }
+            #zdy.highlighted {
+                background-color: #00FFFF;
+                color: white; /* 白色文字 */
+            }
+            #zkq.highlighted {
+                background-color: #00FFFF;
+                color: white; /* 白色文字 */
+            }
+    </style>
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div>
+        <button id="zdy">朱道勇</button>
+        <button id="zkq">郑堪钦</button>
+        <button id="cyw">陈耀文</button>
+        <button id="lfy">刘方瑜</button>
+    </div>
+    <div id="main" style="width: 900px; height: 600px; margin: auto;"></div>
+
+    <script type="text/javascript" src="public/node_modules/echarts/dist/echarts.js"></script>
+    <script type="text/javascript" src="public/choose.js"></script>
+</body>
+</html>

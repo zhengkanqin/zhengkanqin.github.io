@@ -54,6 +54,113 @@ if (!localStorage.getItem('indexUser')) {
 }
 
 
+if (!localStorage.getItem('indexShortCut')) {
+    iziToast.show({title: '系统',message: '收藏夹不存在，已经创建默认信息，建议重启',});
+    const shortCutData = [
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Folder",
+            "name": "Student",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": [
+                {
+                    "type": "Link",
+                    "name": "Google",
+                    "content": "https://www.google.com/"
+                },
+                {
+                    "type": "Link",
+                    "name": "GitHub",
+                    "content": "https://github.com/"
+                },
+                {
+                    "type": "Link",
+                    "name": "bilibili",
+                    "content": "https://bilibili.com/"
+                }
+            ]
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        },
+        {
+            "type": "Link",
+            "name": "bilibili",
+            "icon": "https://www.bilibili.com/favicon.ico",
+            "content": "https://bilibili.com/"
+        }
+    ];
+    localStorage.setItem('indexShortCut', JSON.stringify(shortCutData));
+}
+
 if (!localStorage.getItem('themeSet')) {
     const userData1 = 0;
     localStorage.setItem('themeSet', JSON.stringify(userData1));

@@ -1,0 +1,150 @@
+<template>
+    <view class="uv-page">
+      <uv-cell-group>
+        <uv-cell
+          @click="openTransition(item.mode)"
+          :title="item.title"
+          v-for="(item, index) in list"
+          :key="index"
+          isLink
+        >
+				<template v-slot:icon>
+					<image
+					  class="uv-cell-icon"
+					  :src="item.iconUrl"
+					  mode="widthFix"
+					></image>
+				</template>
+        </uv-cell>
+      </uv-cell-group>
+			<view>
+				<uv-transition
+				  :mode="mode"
+				  :show="show"
+				  :custom-style="customStyle"
+				  @click="click"
+				  @change="change"/>
+				<uv-gap height="20px"></uv-gap>
+				<uv-transition
+					ref="ani"
+				  :show="true"
+				  :custom-style="customStyle2"
+				  @click="click"
+				  @change="change" />
+			</view>
+    </view>
+</template>
+
+<script>
+import { sys } from '@/uni_modules/uv-ui-tools/libs/function/index.js';
+export default {
+    data() {
+        return {
+          mode: "",
+          show: false,
+					show1: false,
+          customStyle: {
+            position: "fixed",
+            top: `${sys().windowHeight / 2 - 50}px`,
+            left: `${sys().windowWidth / 2 - 50}px`,
+            width: "120px",
+            height: "120px",
+            backgroundColor: "#1989fa"
+          },
+					customStyle2: {
+						width: "40px",
+						height: "40px",
+						backgroundColor: "#1989fa"
+					},
+          list: [{
+            mode: "fade",
+            title: "渐隐渐出过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/fade.png"
+          },{
+            mode: "slide-top",
+            title: "由上至下过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/slideUp.png"
+          },{
+            mode: "slide-bottom",
+            title: "由下至上过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/slideDown.png"
+          },{
+            mode: "slide-left",
+            title: "由左至右过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/slideLeft.png"
+          }, {
+            mode: "slide-right",
+            title: "由右至左过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/slideRight.png"
+          },{
+            mode: "zoom-in",
+            title: "由小到大过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/zoom.png"
+          },{
+            mode: "zoom-out",
+            title: "由大到小过渡",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/zoom.png"
+          },{
+            mode: "custom",
+            title: "自定义动画",
+            iconUrl: "https://cdn.uviewui.com/uview/demo/transition/zoom.png"
+          }]
+        }
+    },
+		onReady() {
+			this.$refs.ani.init({
+				duration: 300,
+				timingFunction: 'linear',
+				transformOrigin: '50% 50%',
+				delay: 500
+			})
+		},
+    methods: {
+        openTransition(mode) {
+					if(mode == 'custom') {
+						this.run();
+					}else{
+						this.mode = mode;
+						this.show = true;
+						setTimeout(() => {
+						    this.show = false;
+						}, 1500);
+					}
+        },
+        click() {
+          console.log("click");
+        },
+        change() {
+          console.log("change");
+        },
+				run() {
+					// 同时右平移到 100px,旋转 360 读
+					this.$refs.ani.step({
+						translateX: '200px',
+						rotate: '360'
+					})
+					// 上面的动画执行完成后，等待200毫秒平移到 0px,旋转到 0 读
+					this.$refs.ani.step({
+						translateX: '0px',
+						rotate: '0'
+					},
+					{
+						timingFunction: 'ease-in',
+						duration: 200
+					})
+					// 开始执行动画
+					this.$refs.ani.run(()=>{
+						console.log('动画支持完毕')
+						this.show1 = false;
+					})
+				}
+    }
+}
+</script>
+
+<style lang="scss">
+@import '@/uni_modules/uv-ui-tools/libs/css/color.scss';
+.uv-page {
+    padding: 0;
+}
+</style>

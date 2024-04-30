@@ -1,0 +1,8 @@
+export default {}
+
+function GenPagesIndexIndexRender(): any | null {
+const _ctx = this
+const _cache = this.$.renderCache
+  return createElementVNode("view", utsMapOf({ class: "content" }), " 测试软件 ")
+}
+const GenPagesIndexIndexStyles = [utsMapOf([["content", padStyleMapOf(utsMapOf([["display", "flex"], ["justifyContent", "center"], ["alignContent", "center"], ["textAlign", "center"], ["width", "100%"], ["height", "100%"], ["backgroundColor", "#45ffa2"]]))]])]

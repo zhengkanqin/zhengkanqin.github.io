@@ -1,0 +1,565 @@
+﻿[
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714103109585,
+        "name": "永远",
+        "id": 22
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4"
+    },
+    "r": {
+      "identity": 23,
+      "start": 4,
+      "end": 5,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:23",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:5"
+    },
+    "m": {
+      "identity": 5,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1714058113286",
+        "name": "iv77",
+        "id": 13
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:5"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "默认头像",
+        "name": "poems",
+        "id": 8
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:1"
+    },
+    "r": {
+      "identity": 24,
+      "start": 1,
+      "end": 2,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:24",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:1",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "默认头像",
+        "name": "poems",
+        "id": 8
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:1"
+    },
+    "r": {
+      "identity": 25,
+      "start": 1,
+      "end": 0,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:25",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:1",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714109860615,
+        "name": "Kitty",
+        "id": 27
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "r": {
+      "identity": 26,
+      "start": 2,
+      "end": 0,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:26",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714109860615,
+        "name": "Kitty",
+        "id": 27
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "r": {
+      "identity": 27,
+      "start": 2,
+      "end": 4,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:27",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714103109585,
+        "name": "永远",
+        "id": 22
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714109860615,
+        "name": "Kitty",
+        "id": 27
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0"
+    },
+    "r": {
+      "identity": 28,
+      "start": 0,
+      "end": 2,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:28",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714058113286,
+        "name": "郑堪钦",
+        "id": 2
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:3"
+    },
+    "r": {
+      "identity": 29,
+      "start": 3,
+      "end": 2,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:29",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:3",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714103109585,
+        "name": "永远",
+        "id": 22
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4"
+    },
+    "r": {
+      "identity": 30,
+      "start": 4,
+      "end": 2,
+      "type": "关注",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:30",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "r": {
+      "identity": 31,
+      "start": 2,
+      "end": 22,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:31",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:22"
+    },
+    "m": {
+      "identity": 22,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "“3V3篮球争霸赛：‘球’你来战！”",
+        "id": 13
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:22"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1713942841284",
+        "name": "柠栀",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2"
+    },
+    "r": {
+      "identity": 32,
+      "start": 2,
+      "end": 23,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:32",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:2",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:23"
+    },
+    "m": {
+      "identity": 23,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "夏日泳伴集结：校园游泳兴趣小组等你加入",
+        "id": 14
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:23"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714109860615,
+        "name": "Kitty",
+        "id": 27
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0"
+    },
+    "r": {
+      "identity": 33,
+      "start": 0,
+      "end": 24,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:33",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:0",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:24"
+    },
+    "m": {
+      "identity": 24,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "校园围棋观赏会 —— “观棋不语真君子”",
+        "id": 15
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:24"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "1714058113286",
+        "name": "iv77",
+        "id": 13
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:5"
+    },
+    "r": {
+      "identity": 34,
+      "start": 5,
+      "end": 25,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:34",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:5",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:25"
+    },
+    "m": {
+      "identity": 25,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "论文排版怎么样合适",
+        "id": 3
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:25"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": "默认头像",
+        "name": "poems",
+        "id": 8
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:1"
+    },
+    "r": {
+      "identity": 35,
+      "start": 1,
+      "end": 26,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:35",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:1",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:26"
+    },
+    "m": {
+      "identity": 26,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "王者Q区五排缺人",
+        "id": 4
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:26"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714058113286,
+        "name": "郑堪钦",
+        "id": 2
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:3"
+    },
+    "r": {
+      "identity": 36,
+      "start": 3,
+      "end": 27,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:36",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:3",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:27"
+    },
+    "m": {
+      "identity": 27,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "“智能环保大创项目GreenCycle：寻找技术合",
+        "id": 5
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:27"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "person"
+      ],
+      "properties": {
+        "imageUrl": 1714103109585,
+        "name": "永远",
+        "id": 22
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4"
+    },
+    "r": {
+      "identity": 37,
+      "start": 4,
+      "end": 28,
+      "type": "发布",
+      "properties": {
+
+      },
+      "elementId": "5:684658e6-3a3b-4a74-9711-f2779702ec53:37",
+      "startNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:4",
+      "endNodeElementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:28"
+    },
+    "m": {
+      "identity": 28,
+      "labels": [
+        "event"
+      ],
+      "properties": {
+        "name": "遥感技术专家讲座应用",
+        "id": 6
+      },
+      "elementId": "4:684658e6-3a3b-4a74-9711-f2779702ec53:28"
+    }
+  }
+]

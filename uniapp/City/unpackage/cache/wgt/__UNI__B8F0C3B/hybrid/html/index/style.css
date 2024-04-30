@@ -1,0 +1,385 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+.map-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 110%;
+  }
+
+  body{
+    overflow: hidden;
+  }
+  
+.custom-marker {
+  position: relative;
+  width: 25px;
+  height: 34px;
+}
+
+.avatar-background-help,
+.avatar-help {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.avatar-help {
+  width: 45px;
+  height: auto;
+}
+
+.avatar-background-help {
+  z-index: -1; /* 确保背景图片在底层 */
+  width: 32px; /* 调整背景宽度为比avatar更大的值 */
+  height: 32px;
+  border-radius: 50%;
+  left:6px;
+  margin-top: 6px;
+}
+
+.avatar-background,
+.avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.avatar {
+  width: 40px;
+  height: auto;
+}
+
+.avatar-background {
+  z-index: -1; /* 确保背景图片在底层 */
+  width: 29px; /* 调整背景宽度为比avatar更大的值 */
+  height: 29px;
+  border-radius: 50%;
+  left:5px;
+  margin-top: 6px;
+}
+
+/* 媒体查询：适用于小屏幕设备 */
+@media screen and (max-width: 480px) {
+  .container {
+    max-width: 100%; /* 小屏幕上使用百分比作为最大宽度 */
+    /* 其他针对小屏幕的样式调整 */
+  }
+}
+
+.custom-marker img {
+
+}
+
+/* marker 样式 */
+  .custom-marker .close-btn {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+    background: #ccc;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 15px;
+    box-shadow: -1px 1px 1px 0px rgba(10, 10, 10, 0.2);
+  }
+
+  .custom-marker .close-btn:hover{
+    background: #ffffff;
+  }
+
+/* 学术 */
+.info-marker-academic {
+  background-color: white;
+  width: auto;
+  height: auto; /* 改为自动高度 */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;  
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(81, 105, 187, 0.3); /* 添加外阴影 */
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-direction: row; /* 水平方向排列子元素 */
+  justify-content: center; /* 水平居中 */
+  padding-right: 5px; /* 减少顶部内边距 */
+}
+.info-left-container-academic {
+  min-width: 100px;
+  display: flex; 
+  flex-direction: column; /* 垂直方向排列子元素 */
+  padding-right: 4px;
+  margin:4px;
+  justify-content: flex-end;
+} 
+
+.info-right-container-academic {
+  /* margin-top: 2px; */
+  align-items: center; /* 垂直居中 */
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  flex-direction: column; /* 垂直方向排列子元素 */
+  align-items: center;
+  border-left: 2px solid #abd5ea; /* 添加左侧竖线 */ 
+  padding-left: 5px; /* 调整左侧间距 */
+  font-size: 4px;
+}
+.info-right-container-academic .countdown-time{
+    margin:5px;
+    padding: 3px;
+    font-family: 微软雅黑;
+    font-size: 4px;
+    color: #21729b;
+    font-weight: bold;
+}
+.event_title_academic{
+  font-family: 微软雅黑;
+  font-size: 9px;
+  font-weight: bold;
+  color: #0773a9;
+}
+.info-text-academic p {
+  font-family: 华文细黑;
+  font-size: 7px;
+}
+
+.info-marker-academic .info-left-container-academic .info-text-academic {
+  padding-bottom: 5px;
+  display: flex; /* 启用 Flexbox 布局 */
+  font-family: 华文细黑;
+  color: #6d7274;
+}
+.info-marker-academic .info-left-container-academic .info-image {
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.info-left-container-academic img {
+  width: 85px;
+  height: auto;
+  object-fit: cover; /* 图片填充 */
+}
+
+/* 求助 */
+.info-marker-help {
+  background-color: rgb(255, 255, 255);
+  width: auto;
+  height: auto; /* 改为自动高度 */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;  
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(81, 105, 187, 0.3); /* 添加外阴影 */
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-direction: row; /* 水平方向排列子元素 */
+  justify-content: center; /* 水平居中 */
+  padding-right: 5px; /* 减少顶部内边距 */
+}
+.info-left-container-help {
+  min-width: 100px;
+  display: flex; 
+  flex-direction: column; /* 垂直方向排列子元素 */
+  padding-right: 4px;
+  margin:4px;
+  justify-content: flex-end;
+} 
+
+.info-right-container-help {
+  /* margin-top: 2px; */
+  align-items: center; /* 垂直居中 */
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  flex-direction: column; /* 垂直方向排列子元素 */
+  align-items: center;
+  border-left: 2px solid #76b4b1; /* 添加左侧竖线 */ 
+  padding-left: 5px; /* 调整左侧间距 */
+  font-size: 4px;
+}
+.info-right-container-help .countdown-time{
+    margin:5px;
+    padding: 3px;
+    font-family: 微软雅黑;
+    font-size: 4px;
+    color: #07a082;
+    font-weight: bold;
+}
+.event_title_help{
+  font-family: 微软雅黑;
+  font-size: 9px;
+  font-weight: bold;
+  color: #017d6a;
+}
+.info-text-help p {
+  font-family: 华文细黑;
+  font-size: 7px;
+}
+
+.info-marker-help .info-left-container-help .info-text-help {
+  padding-bottom: 5px;
+  display: flex; /* 启用 Flexbox 布局 */
+  font-family: 华文细黑;
+  color: #6d7274;
+}
+.info-marker-help .info-left-container-help .info-image {
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.info-left-container-help img {
+  width: 85px;
+  height: auto;
+  object-fit: cover; /* 图片填充 */
+}
+
+/* 志愿 */
+.info-marker-volunteer {
+  background-color: white;
+  width: auto;
+  height: auto; /* 改为自动高度 */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;  
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(81, 105, 187, 0.3); /* 添加外阴影 */
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-direction: row; /* 水平方向排列子元素 */
+  justify-content: center; /* 水平居中 */
+  padding-right: 5px; /* 减少顶部内边距 */
+}
+.info-left-container-volunteer {
+  min-width: 100px;
+  display: flex; 
+  flex-direction: column; /* 垂直方向排列子元素 */
+  padding-right: 4px;
+  margin:4px;
+  justify-content: flex-end;
+} 
+
+.info-right-container-volunteer {
+  /* margin-top: 2px; */
+  align-items: center; /* 垂直居中 */
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  flex-direction: column; /* 垂直方向排列子元素 */
+  align-items: center;
+  border-left: 2px solid #b78e92; /* 添加左侧竖线 */ 
+  padding-left: 5px; /* 调整左侧间距 */
+  font-size: 4px;
+}
+.info-right-container-volunteer .countdown-time{
+    margin:5px;
+    padding: 3px;
+    font-family: 微软雅黑;
+    font-size: 4px;
+    color: #b1454e;
+    font-weight: bold;
+}
+.event_title_volunteer{
+  font-family: 微软雅黑;
+  font-size: 9px;
+  font-weight: bold;
+  color: #9d061f;
+}
+.info-text-volunteer p {
+  font-family: 华文细黑;
+  font-size: 7px;
+}
+
+.info-marker-volunteer .info-left-container-volunteer .info-text-volunteer {
+  padding-bottom: 5px;
+  display: flex; /* 启用 Flexbox 布局 */
+  font-family: 华文细黑;
+  color: #6d7274;
+}
+.info-marker-volunteer .info-left-container-volunteer .info-image {
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+.info-left-container-volunteer img {
+  width: 85px;
+  height: auto;
+  object-fit: cover; /* 图片填充 */
+}
+
+.tag-friend {
+  font-size: 6px;
+  font-family:黑体;
+  color: #fff;
+  display: inline-block;
+  margin-right: 3px; /* 可以根据需要调整标签之间的间距 */
+  padding: 3px 5px; /* 控制标签的内边距 */
+  border-radius: 5px; /* 圆角半径 */
+  background-color: rgb(184, 174, 228); /* 背景色 */
+}
+
+.tag-game {
+  font-size: 6px;
+  font-family: 黑体;
+  color: #fff;
+  display: inline-block;
+  margin-right: 3px; /* 可以根据需要调整标签之间的间距 */
+  padding: 3px 5px; /* 控制标签的内边距 */
+  border-radius: 5px; /* 圆角半径 */
+  background-color: rgb(148, 183, 232); /* 背景色 */
+}
+
+.tag-else {
+  font-size: 6px;
+  font-family: 黑体;
+  color: #fff;
+  display: inline-block;
+  margin-right: 3px; /* 可以根据需要调整标签之间的间距 */
+  padding: 3px 5px; /* 控制标签的内边距 */
+  border-radius: 5px; /* 圆角半径 */
+  background-color: rgb(218, 198, 152); /* 背景色 */
+}
+
+.time-icon {
+  width: 20px; height: 20px;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/* 聚合版本 */
+.info-marker-cluster {
+  background-color: white;
+  min-width: 100px;
+  height: auto; /* 改为自动高度 */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;  
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(81, 105, 187, 0.3); /* 添加外阴影 */
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-direction: column; /* 水平方向排列子元素 */
+  justify-content: center; /* 水平居中 */
+  padding: 5px; /* 减少顶部内边距 */
+}
+
+.cluster_title_academic{
+  font-family: 微软雅黑;
+  font-size: 9px;
+  font-weight: bold;
+  color: #0773a9;
+}
+.cluster_title_help
+{
+  font-family: 微软雅黑;
+  font-size: 9px;
+  font-weight: bold;
+  color: #f48181;
+}
+.cluster_title_volunteer
+{
+  font-family: 微软雅黑;
+  font-size: 9px;
+  font-weight: bold;
+  color: #0ab48f;
+}

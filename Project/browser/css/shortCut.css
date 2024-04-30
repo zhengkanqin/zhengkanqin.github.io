@@ -1,0 +1,114 @@
+.shortCut{
+    border: 1px solid #000000;
+    width: 90%;
+    height:70%;
+    display: flex; /* 将容器设置为 Flexbox 布局 */
+    overflow-x: auto; /* 水平方向溢出时显示滚动条 */
+    white-space: nowrap; /* 防止内容换行 */
+    list-style-type: none; /* 移除项目符号 */
+    align-items: center; /* 垂直居中 */
+
+
+}
+
+.shortCutBox{
+    width:150px;
+    height:300px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.shortCutBoxBackground{
+    border-radius:5px;
+    width:100px;
+    height:85%;
+    height: 85%;
+    min-width:85px;
+    background-color: rgba(0, 0, 0, 0.242);
+    position: relative;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    overflow: hidden; /* 当项目溢出时隐藏 */
+    backdrop-filter: blur(30px); /* 模糊背景 */
+    transition: all 0.2s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.shortCutBoxBackground:hover .shortCutBoxColor{
+    height:100%;
+    border-radius:5px;
+    box-shadow:10px 30px 20px rgb(0, 0, 0);
+ 
+}
+.shortCutBoxBackground:hover{
+    transform: scale(1.05);
+}
+.shortCutBoxBackground:active{
+    transform : scale(0.95);
+    box-shadow:none;
+}
+
+
+.shortCutBoxContent{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    align-items: center;
+    position: absolute;
+}
+.shortCutBoxColor{
+    width:100%;
+    height:5%;
+    background-color: rgb(62, 155, 112);
+    position: absolute;
+    bottom:0;
+    z-index: -1;
+    transition: all 0.4s;
+}
+
+
+
+
+
+
+.shortCutBoxContentIcon{
+   width:50px;
+   height:50%;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+}
+.shortCutBoxContentName{
+    min-width:80px;
+    height:50%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    font-weight: bold;
+    color: #fefefec8;
+    font-size: clamp(0.6em,1.5vw,0.8em);
+}
+.shortCutBoxContentIconImg{
+    width:35px;
+    height:35px;
+}
+

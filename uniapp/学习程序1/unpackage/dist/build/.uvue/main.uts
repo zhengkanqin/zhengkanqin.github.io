@@ -1,0 +1,44 @@
+import App from './App.uvue'
+
+import { createSSRApp } from 'vue'
+export function createApp() {
+	const app = createSSRApp(App)
+	return {
+		app
+	}
+}
+export function main(app: IApp) {
+    definePageRoutes();
+    defineAppConfig();
+    
+    (createApp()['app'] as VueApp).mount(app);
+}
+
+import { AppConfig } from "io.dcloud.uniapp.appframe"
+export class UniAppConfig extends AppConfig {
+    override name: string = "学习程序1"
+    override appid: string = "__UNI__B63AB75"
+    override versionName: string = "1.0.0"
+    override versionCode: string = "100"
+    override uniCompileVersion: string = "4.08"
+    
+    constructor() {}
+}
+
+import GenPagesIndexIndexClass from './pages/index/index.uvue?type=page'
+import GenPagesDemo1Demo1Class from './pages/demo1/demo1.uvue?type=page'
+function definePageRoutes() {
+__uniRoutes.push({ path: "pages/index/index", component: GenPagesIndexIndexClass, meta: { isQuit: true } as PageMeta, style: utsMapOf([["navigationBarTitleText","index"]]) } as PageRoute)
+__uniRoutes.push({ path: "pages/demo1/demo1", component: GenPagesDemo1Demo1Class, meta: { isQuit: false } as PageMeta, style: utsMapOf([["navigationBarTitleText","213"],["navigationStyle","custom"]]) } as PageRoute)
+}
+const __uniTabBar: Map<string, any | null> | null = utsMapOf([["color","#ffffff"],["backgroundColor","#000000"],["selectedColor","#cdcdc1"],["list",[utsMapOf([["pagePath","pages/index/index"],["text","我的"]]),utsMapOf([["pagePath","pages/demo1/demo1"],["text","切换"]])]]])
+const __uniLaunchPage: Map<string, any | null> = utsMapOf([["url","pages/index/index"],["style",utsMapOf([["navigationBarTitleText","index"]])]])
+@Suppress("UNCHECKED_CAST")
+function defineAppConfig(){
+  __uniConfig.entryPagePath = '/pages/index/index'
+  __uniConfig.globalStyle = utsMapOf([["navigationBarTextStyle","black"],["navigationBarTitleText","uni-app x"],["navigationBarBackgroundColor","#F8F8F8"],["backgroundColor","#F8F8F8"]])
+  __uniConfig.tabBar = __uniTabBar as Map<string, any> | null
+  __uniConfig.conditionUrl = ''
+  __uniConfig.uniIdRouter = utsMapOf()
+  __uniConfig.ready = true
+}

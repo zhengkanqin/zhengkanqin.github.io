@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "echarts": "^5.5.0",
+    "jquery": "^3.7.1",
+    "ol": "^9.1.0",
+    "ol-layerswitcher": "^4.1.1"
+  }
+}

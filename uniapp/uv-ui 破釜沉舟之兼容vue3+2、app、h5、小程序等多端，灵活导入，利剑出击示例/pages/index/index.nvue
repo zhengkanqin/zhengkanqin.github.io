@@ -1,0 +1,120 @@
+<template>
+	<view class="wrap" ref="uv-back-top">
+		<page-nav :desc="desc"></page-nav>
+		<view class="list-wrap">
+			<uv-cell-group title-bg-color="rgb(243, 244, 246)"
+				:title="item.groupName"
+				v-for="(item, index) in list"
+				:key="index">
+				<uv-cell :titleStyle="{fontWeight: 500}"
+					:title="item1.title"
+					v-for="(item1, index1) in item.list"
+					:key="index1"
+					isLink
+					@click="openPage"
+					:name="item1.path">
+					<template v-slot:icon>
+						<template v-if="item1.isNew">
+							<view class="new">
+								<text class="text">新</text>
+							</view>
+						</template>
+						<image class="uv-cell-icon"
+							:src="getIcon(item1.icon)"
+							mode="widthFix"
+							v-else></image>
+					</template>
+				</uv-cell>
+			</uv-cell-group>
+		</view>
+		<uv-gap height="30"
+			bgColor="#fff"></uv-gap>
+		<uv-back-top :scroll-top="scrollTop"></uv-back-top>
+	</view>
+</template>
+
+<script>
+	import route from '@/uni_modules/uv-ui-tools/libs/util/route.js'
+	import { toast, os } from '@/uni_modules/uv-ui-tools/libs/function/index.js'
+	import list from "./components.config.js";
+	export default {
+		data() {
+			return {
+				scrollTop: 0,
+				list: list,
+				desc: 'uv-ui 破釜沉舟之兼容vue3+2、nvue、app、h5、小程序等多端基于uni-app的生态框架，支持单独导入，开箱即用，利剑出击。',
+			}
+		},
+		computed: {
+			getIcon() {
+				return path => {
+					return 'https://cdn.uviewui.com/uview/example/' + path + '.png';
+				}
+			},
+		},
+		onLoad() {
+			// #ifdef APP-NVUE
+			uni.showModal({
+				title: '温馨提示',
+				content: '图片等资源由于防盗链暂时无法在APP访问，所以您可能将要看到的图片都无法正常显示。大部分组件与H5效果一致，您也可以查看H5演示。',
+				showCancel: false,
+				confirmText: '我知道了'
+			})
+			// #endif
+		},
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop;
+			// #ifdef APP-NVUE
+			this.scrollTop = e.detail.scrollTop;
+			// #endif
+		},
+		methods: {
+			openPage(detail) {
+				const path = detail.name
+				// #ifdef APP-NVUE
+				// 目前安卓nvue下，由于overflow只能为hidden，所以布局上的原因，暂不支持steps和tooltip等组件
+				if (os() === 'android') {
+					const noSupportForAndroid = ['steps', 'tooltip','pickColor']
+					for (let i = 0; i < noSupportForAndroid.length; i++) {
+						if (path.indexOf(noSupportForAndroid[i]) > -1) {
+							return toast('安卓nvue下暂不支持此组件')
+						}
+					}
+				}
+				// #endif
+				route({
+					url: path
+				})
+			},
+		}
+	}
+</script>
+
+<style lang="scss">
+	.uv-cell-icon1 {
+		width: 36rpx;
+		height: 36rpx;
+		margin-right: 8rpx;
+	}
+	.uv-cell-group__title__text {
+		font-weight: bold;
+	}
+	.new {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 40rpx;
+		height: 40rpx;
+		line-height: 40rpx;
+		text-align: center;
+		background: #f3f4f6;
+		border-radius: 4rpx;
+		.text {
+			font-size: 28rpx;
+			color: #3c9cff;
+		}
+	}
+</style>

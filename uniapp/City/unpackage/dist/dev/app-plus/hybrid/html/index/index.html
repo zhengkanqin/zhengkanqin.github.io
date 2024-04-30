@@ -1,0 +1,694 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>地图视图</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://at.alicdn.com/t/c/font_4517633_0v5y9uhqn3kb.js"></script>
+		<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+		<script
+			src="https://webapi.amap.com/maps?v=2.0&key=ec334f27789fb7c641a7db923e768679&plugin=AMap.ControlBar,AMap.ToolBar,AMap.MarkerCluster">
+		</script>
+		<script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+	</head>
+
+	<body>
+		<div class="map-container" id="map-container"></div>
+		<script>
+		const GoMany = (item)=>{
+			uni.navigateTo({
+				url:'/pages/ManyInformation/ManyInformation?list='+item
+			})
+		}
+		const GoEvent = (id) => {
+				uni.navigateTo({
+					'url': "/pages/titleContent/titleContent?id=" + id
+				})
+			};
+		</script>
+		<script>
+		const GoUser = (id) => {
+				uni.navigateTo({
+					'url': "/pages/UserShow/UserShow?id=" + id
+				})
+			};
+		</script>
+		<script type="text/javascript">
+			window._AMapSecurityConfig = {
+				securityJsCode: 'b1f1ca8d60c0c74cdf8ccc731c545e6f',
+			}
+		</script>
+		<script>
+			var map;
+
+			function mapInit() {
+				map = new AMap.Map('map-container', {
+					rotateEnable: true,
+					pitchEnable: true,
+					pitch: 50,
+					rotation: -15,
+					viewMode: '3D',
+					zoom: 15,
+					minZoom: 13, // 设置地图允许的最小缩放级别为 13
+					maxZoom: 20, // 设置地图允许的最大缩放级别为 20
+					center: [114.371713, 30.542335],
+					resizeEnable: true
+				});
+			};
+			mapInit();
+		</script>
+		<script>
+			var markers = [];
+			var infoMarkers = [];
+			const dataMap = {}
+			Object.defineProperty(dataMap, 'property', {
+				get: function() {
+					console.log('Getting property value');
+					return this._property;
+				},
+				set: function(value) {
+					console.log('Setting property value to ' + value);
+					this._property = value;
+					changedata(value);
+					loadmarkers(value);
+					locateUser();
+					cluster(value);
+				}
+			});
+		</script>
+		<script>
+			function changedata(eventData) {
+				eventData.forEach(function(item) {
+					// 将locationX和locationY的值转换为lnglat的格式
+					item.lnglat = [item.locationX, item.locationY];
+					// 删除原有的locationX和locationY字段（如果需要保留可以注释掉下面两行代码）
+					delete item.locationX;
+					delete item.locationY;
+				});
+			}
+
+			function loadmarkers(eventData) {
+				var serverUrl = "http://116.62.176.59:8080/xqlgq/files/";
+				eventData.forEach(function(data) {
+					var coordinates = data.lnglat;
+					var markerContent;
+					var imageURL = data.publisher.userImage;
+					imageURL = serverUrl + imageURL;
+					// imageURL = "https://tupian.qqw21.com/article/UploadPic/2020-3/20203162351455618.jpg";
+					if (data.type === '公益') {
+						markerContent = '<div class="custom-marker">' +
+							'<img src="' + imageURL + '" class="avatar-background">' +
+							'   <img src="https://i.postimg.cc/j5DRRJpX/volunteer.png" class="avatar">' + // 定位图标
+							'</div>';
+					} else if (data.type === '求助') {
+						markerContent = '<div class="custom-marker">' +
+							'<img src="' + imageURL + '" class="avatar-background-help">' +
+							'   <img src="https://i.postimg.cc/PrPY06Vp/help.png" class="avatar-help">' + // 定位图标
+							'</div>';
+					} else {
+						markerContent = '<div class="custom-marker">' +
+							'<img src="' + imageURL + '" class="avatar-background">' +
+							'   <img src="https://i.postimg.cc/nVCPxPtx/academic.png" class="avatar">' + // 定位图标
+							'</div>';
+					}
+
+					var marker = new AMap.Marker({
+						position: data.lnglat,
+						content: markerContent,
+						clickable: true, //图标可点击
+						offset: new AMap.Pixel(0, 0),
+						eventID: data.gid,
+						eventUser: data.userId,
+						eventType: data.type,
+						eventTime: data.timestamp,
+						eventTitle: data.title,
+						eventContent: data.content,
+						eventImageList: data.images,
+						eventPayment: data.payment,
+						eventDeadline: data.deadline,
+						eventParticipantList: data.participantList,
+						eventLike: data.like
+					});
+
+					markers.push(marker);
+					var infoMarkerContent;
+					var infoMarkerContent;
+					var infoMarker;
+					if (data.type == "公益") {
+						// 创建信息框的内容
+						var truncatedContent = data.content.length > 20 ? data.content.substring(0, 20) + '...' : data
+							.content;
+						infoMarkerContent = '<div class="info-marker-help">';
+						infoMarkerContent += '<div class="info-left-container-help">';
+						infoMarkerContent += '<p class="event_title_help">' + data.title + '</p>'; // 标题在最上面
+						infoMarkerContent += '<div class="info-text-help">';
+						infoMarkerContent += '<p>' + truncatedContent + '</p>';
+						infoMarkerContent += '</div>';
+						// 检查是否有图片内容
+						if (data.images && data.images.length > 2) {
+							// 将字符串转换为数组
+							var dataImagesArray = JSON.parse(data.images);
+							// 提取索引范围为 0 到 12 的元素，并将它们连接成一个字符串
+							var slicedString = dataImagesArray.slice(0, 1).join('');
+							var firstImageId = slicedString;
+							// 拼接第一张图片的完整链接
+							var firstImageUrl = serverUrl + firstImageId;
+							console.log(firstImageUrl);
+							// 将第一张图片添加到信息框中
+							infoMarkerContent += '<div class="info-image">';
+							infoMarkerContent += '<img src="' + firstImageUrl + '">';
+							infoMarkerContent += '</div>';
+						}
+						if (data.tag) {
+							var tagsString = JSON.stringify(data.tag);
+							// 然后我们需要将这个 JSON 字符串解析回数组
+							var tagsArray = JSON.parse(tagsString);
+							infoMarkerContent += '<div class="info-tags">';
+							if (tagsArray.includes("好友")) {
+								infoMarkerContent += '<p class="tag-friend">' + "好友" + '</p>';
+							};
+							if (tagsArray.includes("最近")) {
+								infoMarkerContent += '<p class="tag-game">' + "最近" + '</p>';
+							}
+							if (tagsArray.includes("娱乐")) {
+								infoMarkerContent += '<p class="tag-game">' + "娱乐" + '</p>';
+							}
+							infoMarkerContent += '</div>';
+						};
+						infoMarkerContent += '</div>'; // 左侧容器结束
+
+						if (data.deadline && data.deadline.length > 2) {
+
+							// 添加右侧容器
+							infoMarkerContent += '<div class="info-right-container-help">';
+							infoMarkerContent += '<svg class="icon time-icon" aria-hidden="true">';
+							console.log
+							infoMarkerContent += '<use xlink:href="#icon-daojishi3"></use>';
+							infoMarkerContent += '</svg>';
+							// 添加倒计时到信息框中
+							infoMarkerContent += '<p id="' + data.gid + '" class="countdown-time" ></p>';
+							infoMarkerContent += '</div>'; // 右侧容器结束
+							var end = JSON.stringify(data.deadline);
+							var time = JSON.parse(end);
+							var year = parseInt((time[0]));
+							var month = parseInt((time[1]));
+							var day = parseInt((time[2]));
+							var hour = parseInt((time[3]));
+							var minute = parseInt((time[4]));
+							var dateParts = [year, month, day, hour, minute];
+							var date = new Date(dateParts[0], dateParts[1], dateParts[2], dateParts[3], dateParts[4], 0);
+							var endTime = date; // 获取目标的日期值为：2024/4/11 00:00:00;
+							setInterval(function() {
+								var now = new Date(); // 获取当前时间
+								var diff = endTime.getTime() - now.getTime(); // 获取距离目标时间的毫秒数
+								diff = parseInt(diff / 1000); // 转换成秒数
+								var days = parseInt(diff / (24 * 3600)); // 获取天数
+								var hours = parseInt(diff % (24 * 3600) / 3600); // 获取小时
+								var minutes = parseInt(diff % 3600 / 60); // 获取分钟
+								var seconds = diff % 60; // 获取秒数
+
+								// 格式化显示倒计时
+								var countdownTime = formatTwoDigits(days) + ":" + formatTwoDigits(hours) + ":" +
+									formatTwoDigits(minutes) + ":" + formatTwoDigits(seconds);
+								// 更新倒计时显示
+								document.getElementById(data.gid).textContent = countdownTime;
+							}, 1000); // 刷新间隔为1秒
+
+							// 格式化数字为两位数
+							function formatTwoDigits(num) {
+								return num < 10 ? "0" + num : num;
+							}
+							// 信息框内容结束
+						}
+						// 信息框内容结束
+						infoMarkerContent += '</div>'; // 信息框结束 
+						// 创建信息框的标记，并添加到地图中
+						infoMarker = new AMap.Marker({
+							position: coordinates,
+							content: infoMarkerContent,
+							offset: new AMap.Pixel(40, 0), // 位置偏移以显示在原标记上方
+							eventID: data.gid,
+							zIndex: 1000, // 确保信息框在顶层
+							clickable: true, // 使信息框不可点击
+							relatedMarker: marker, // 将 marker 关联到 infoMarker 的自定义属性 relatedMarker 中
+							flag: false, //记录infomarker的显示情况
+						});
+						infoMarkers.push(infoMarker);
+					} else if (data.type == "求助") {
+						// 创建信息框的内容
+						var truncatedContent = data.content.length > 20 ? data.content.substring(0, 20) + '...' : data
+							.content;
+						infoMarkerContent = '<div class="info-marker-volunteer">';
+						infoMarkerContent += '<div class="info-left-container-volunteer">';
+						infoMarkerContent += '<p class="event_title_volunteer">' + data.title + '</p>'; // 标题在最上面
+						infoMarkerContent += '<div class="info-text-volunteer">';
+						infoMarkerContent += '<p>' + truncatedContent + '</p>';
+						infoMarkerContent += '</div>';
+						// 检查是否有图片内容
+						if (data.images && data.images.length > 2) {
+							// 将字符串转换为数组
+							var dataImagesArray = JSON.parse(data.images);
+							// 提取索引范围为 0 到 12 的元素，并将它们连接成一个字符串
+							var slicedString = dataImagesArray.slice(0, 1).join('');
+							var firstImageId = slicedString;
+							// 拼接第一张图片的完整链接
+							var firstImageUrl = serverUrl + firstImageId;
+							console.log(firstImageUrl);
+							// 将第一张图片添加到信息框中
+							infoMarkerContent += '<div class="info-image">';
+							infoMarkerContent += '<img src="' + firstImageUrl + '">';
+							infoMarkerContent += '</div>';
+						}
+						if (data.tag) {
+							var tagsString = JSON.stringify(data.tag);
+							// 然后我们需要将这个 JSON 字符串解析回数组
+							var tagsArray = JSON.parse(tagsString);
+							infoMarkerContent += '<div class="info-tags">';
+							if (tagsArray.includes("好友")) {
+								infoMarkerContent += '<p class="tag-friend">' + "好友" + '</p>';
+							};
+							if (tagsArray.includes("最近")) {
+								infoMarkerContent += '<p class="tag-game">' + "最近" + '</p>';
+							}
+							if (tagsArray.includes("娱乐")) {
+								infoMarkerContent += '<p class="tag-game">' + "娱乐" + '</p>';
+							}
+							infoMarkerContent += '</div>';
+						};
+						infoMarkerContent += '</div>'; // 左侧容器结束
+
+						if (data.deadline && data.deadline.length > 2) {
+
+							// 添加右侧容器
+							infoMarkerContent += '<div class="info-right-container-volunteer">';
+							infoMarkerContent += '<svg class="icon time-icon" aria-hidden="true">';
+							console.log
+							infoMarkerContent += '<use xlink:href="#icon-daojishi2"></use>';
+							infoMarkerContent += '</svg>';
+							// 添加倒计时到信息框中
+							infoMarkerContent += '<p id="' + data.gid + '" class="countdown-time" ></p>';
+							infoMarkerContent += '</div>'; // 右侧容器结束
+							var end = JSON.stringify(data.deadline);
+							var time = JSON.parse(end);
+							var year = parseInt((time[0]));
+							var month = parseInt((time[1]));
+							var day = parseInt((time[2]));
+							var hour = parseInt((time[3]));
+							var minute = parseInt((time[4]));
+							var dateParts = [year, month, day, hour, minute];
+							var date = new Date(dateParts[0], dateParts[1], dateParts[2], dateParts[3], dateParts[4], 0);
+							var endTime = date; // 获取目标的日期值为：2024/4/11 00:00:00;
+							setInterval(function() {
+								var now = new Date(); // 获取当前时间
+								var diff = endTime.getTime() - now.getTime(); // 获取距离目标时间的毫秒数
+								diff = parseInt(diff / 1000); // 转换成秒数
+								var days = parseInt(diff / (24 * 3600)); // 获取天数
+								var hours = parseInt(diff % (24 * 3600) / 3600); // 获取小时
+								var minutes = parseInt(diff % 3600 / 60); // 获取分钟
+								var seconds = diff % 60; // 获取秒数
+
+								// 格式化显示倒计时
+								var countdownTime = formatTwoDigits(days) + ":" + formatTwoDigits(hours) + ":" +
+									formatTwoDigits(minutes) + ":" + formatTwoDigits(seconds);
+								// 更新倒计时显示
+								document.getElementById(data.gid).textContent = countdownTime;
+							}, 1000); // 刷新间隔为1秒
+
+							// 格式化数字为两位数
+							function formatTwoDigits(num) {
+								return num < 10 ? "0" + num : num;
+							}
+							// 信息框内容结束
+						}
+						// 信息框内容结束
+						infoMarkerContent += '</div>'; // 信息框结束
+
+						// 创建信息框的标记，并添加到地图中
+						infoMarker = new AMap.Marker({
+							position: coordinates,
+							content: infoMarkerContent,
+							offset: new AMap.Pixel(45, 0), // 位置偏移以显示在原标记上方
+							eventID: data.gid,
+							zIndex: 1000, // 确保信息框在顶层
+							clickable: true, // 使信息框不可点击
+							relatedMarker: marker, // 将 marker 关联到 infoMarker 的自定义属性 relatedMarker 中
+							flag: true, //记录infomarker的显示情况
+						});
+						infoMarker.flag = true;
+						infoMarkers.push(infoMarker);
+					} else {
+						// 创建信息框的内容
+						var truncatedContent = data.content.length > 20 ? data.content.substring(0, 20) + '...' : data
+							.content;
+						infoMarkerContent = '<div class="info-marker-academic">';
+						infoMarkerContent += '<div class="info-left-container-academic">';
+						infoMarkerContent += '<p class="event_title_academic">' + data.title + '</p>'; // 标题在最上面
+						infoMarkerContent += '<div class="info-text-academic">';
+						infoMarkerContent += '<p>' + truncatedContent + '</p>';
+						infoMarkerContent += '</div>';
+						// 检查是否有图片内容
+						if (data.images && data.images.length > 2) {
+							// 将字符串转换为数组
+							var dataImagesArray = JSON.parse(data.images);
+							// 提取索引范围为 0 到 12 的元素，并将它们连接成一个字符串
+							var slicedString = dataImagesArray.slice(0, 1).join('');
+							var firstImageId = slicedString;
+							// 拼接第一张图片的完整链接
+							var firstImageUrl = serverUrl + firstImageId;
+							console.log(firstImageUrl);
+							// 将第一张图片添加到信息框中
+							infoMarkerContent += '<div class="info-image">';
+							infoMarkerContent += '<img src="' + firstImageUrl + '">';
+							infoMarkerContent += '</div>';
+						}
+
+						if (data.tag) {
+							var tagsString = JSON.stringify(data.tag);
+							// 然后我们需要将这个 JSON 字符串解析回数组
+							var tagsArray = JSON.parse(tagsString);
+							infoMarkerContent += '<div class="info-tags">';
+							if (tagsArray.includes("好友")) {
+								infoMarkerContent += '<p class="tag-friend">' + "好友" + '</p>';
+							};
+							if (tagsArray.includes("最近")) {
+								infoMarkerContent += '<p class="tag-game">' + "最近" + '</p>';
+							}
+							if (tagsArray.includes("娱乐")) {
+								infoMarkerContent += '<p class="tag-game">' + "娱乐" + '</p>';
+							}
+							infoMarkerContent += '</div>';
+						};
+						infoMarkerContent += '</div>'; // 左侧容器结束
+
+						if (data.deadline && data.deadline.length > 2) {
+
+							// 添加右侧容器
+							infoMarkerContent += '<div class="info-right-container-academic">';
+							infoMarkerContent += '<svg class="icon time-icon" aria-hidden="true">';
+							console.log
+							infoMarkerContent += '<use xlink:href="#icon-daojishi1"></use>';
+							infoMarkerContent += '</svg>';
+							// 添加倒计时到信息框中
+							infoMarkerContent += '<p id="' + data.gid + '" class="countdown-time" ></p>';
+							infoMarkerContent += '</div>'; // 右侧容器结束
+							var end = JSON.stringify(data.deadline);
+							var time = JSON.parse(end);
+							var year = parseInt((time[0]));
+							var month = parseInt((time[1]));
+							var day = parseInt((time[2]));
+							var hour = parseInt((time[3]));
+							var minute = parseInt((time[4]));
+							var dateParts = [year, month, day, hour, minute];
+							var date = new Date(dateParts[0], dateParts[1]-1, dateParts[2], dateParts[3], dateParts[4], 0);
+							var endTime = date; // 获取目标的日期值为：2024/4/11 00:00:00;
+							setInterval(function() {
+								var now = new Date(); // 获取当前时间
+								var diff = endTime.getTime() - now.getTime(); // 获取距离目标时间的毫秒数
+								diff = parseInt(diff / 1000); // 转换成秒数
+								var days = parseInt(diff / (24 * 3600)); // 获取天数
+								var hours = parseInt(diff % (24 * 3600) / 3600); // 获取小时
+								var minutes = parseInt(diff % 3600 / 60); // 获取分钟
+								var seconds = diff % 60; // 获取秒数
+
+								// 格式化显示倒计时
+								var countdownTime = formatTwoDigits(days) + ":" + formatTwoDigits(hours) + ":" +
+									formatTwoDigits(minutes) + ":" + formatTwoDigits(seconds);
+								// 更新倒计时显示
+								
+								
+								
+								
+								
+								document.getElementById(data.gid).textContent = countdownTime;
+							}, 1000); // 刷新间隔为1秒
+
+							// 格式化数字为两位数 
+							function formatTwoDigits(num) {
+								return num < 10 ? "0" + num : num;
+							}
+							// 信息框内容结束
+						}
+						// 信息框内容结束
+						infoMarkerContent += '</div>'; // 信息框结束  
+						infoMarker = new AMap.Marker({
+							position: coordinates,
+							content: infoMarkerContent,
+							offset: new AMap.Pixel(40, 0), // 位置偏移以显示在原标记上方
+							eventID: data.gid,
+							zIndex: 1000, // 确保信息框在顶层
+							clickable: true, // 使信息框不可点击
+							relatedMarker: marker, // 将 marker 关联到 infoMarker 的自定义属性 relatedMarker 中
+							flag: true, //记录infomarker的显示情况
+						});
+						infoMarker.flag = true;
+						infoMarkers.push(infoMarker);
+					}
+
+
+					infoMarker.on('touchend', function(e) {
+						// alert("aa");
+						// GoEvent(2);
+						var infoMarker = e.target;
+						var marker = infoMarker.relatedInfoMarker;
+						infoMarker.relatedMarker = marker;
+						console.log("go-event" + infoMarker._opts.eventID);
+						var eventID = parseInt(infoMarker._opts.eventID);
+						GoEvent(eventID);
+					});
+					marker.infoMarker = infoMarker;
+					infoMarker.relatedInfoMarker = marker;
+					var startTime;
+					marker.on('touchstart', function(e) {
+						startTime = new Date().getTime(); // 记录触摸开始时间
+					});
+
+					marker.on('touchend', function(e) {
+						var endTime = new Date().getTime(); // 记录触摸结束时间
+						var duration = endTime - startTime; // 计算触摸持续时间
+						var marker = e.target;
+						var infoMarker = marker.infoMarker;
+						var flag = infoMarker.flag;
+
+
+						// 如果持续时间小于0.1秒，则执行操作1
+						if (duration < 100) {
+							// 执行操作1
+							console.log("收起信息框" + data.gid);
+
+							if (flag) {
+								// 如果infoMarker已经在地图上，则隐藏它
+								infoMarker.setMap(null);
+								infoMarker.flag = false;
+							} else {
+								// 如果infoMarker不在地图上，则显示它
+								infoMarker.setMap(map);
+								infoMarker.flag = true;
+							}
+						}
+						// 如果持续时间大于1秒，则执行操作2
+						else if (duration > 500) {
+							// 执行操作2
+							var eventUser = parseInt(data.userId);
+							GoUser(eventUser);
+							console.log("打开用户信息" + data.userId);
+						}
+					});
+				});
+				// map.add(markers);
+				// map.add(infoMarkers);
+			}
+			        function clearmap(){
+			            map.remove(markers);
+			            markers = [];
+			            map.remove(infoMarkers);
+			            infoMarkers = [];
+			            cluster.setMap(null);
+			            map.clearMap();
+			        }
+			function cluster(eventData) {
+				      infoMarkers.forEach(function (infoMarker) {
+				        infoMarker._opts.flag = true;
+				      });
+				const _renderMarker = function(context) {
+					var markerContent;
+					var serverUrl = "http://116.62.176.59:8080/xqlgq/files/";
+					context.data.forEach(function(data) {
+						var coordinates = data.lnglat;
+						// var markerContent;
+						var imageURL = data.publisher.userImage;
+						imageURL = serverUrl + imageURL;
+						// imageURL = "https://c-ssl.duitang.com/uploads/item/201706/30/20170630143159_4WymV.png";//用户头像图标
+						if (data.type === '公益') {
+							markerContent = '<div class="custom-marker">' +
+								'<img src="' + imageURL + '" class="avatar-background">' +
+								'   <img src="http://116.62.176.59:8080/xqlgq/files/1713943396803" class="avatar">' + // 定位图标
+								'</div>';
+						} else if (data.type === '求助') {
+							markerContent = '<div class="custom-marker">' +
+								'<img src="' + imageURL + '" class="avatar-background-help">' +
+								'   <img src="http://116.62.176.59:8080/xqlgq/files/1713943396704" class="avatar-help">' + // 定位图标
+								'</div>';
+						} else {
+							markerContent = '<div class="custom-marker">' +
+								'<img src="' + imageURL + '" class="avatar-background">' +
+								'   <img src="http://116.62.176.59:8080/xqlgq/files/1713942684002" class="avatar">' +
+								// 定位图标
+								'</div>';
+						}
+
+						context.marker.setContent(
+							markerContent
+						);
+
+						context.marker.on('touchstart', function(e) {
+							startTime = new Date().getTime(); // 记录触摸开始时间
+						});
+
+						context.marker.on('touchend', function(e) {
+							var endTime = new Date().getTime(); // 记录触摸结束时间
+							var duration = endTime - startTime; // 计算触摸持续时间
+							// 如果持续时间小于0.1秒，则执行操作1
+							if (duration < 500) {
+								// 执行操作1
+								console.log("收起信息框" + data.gid);
+
+								infoMarkers.forEach(function(infoMarker) {
+									console.log(infoMarker);
+									if (infoMarker._opts.eventID == data.gid) {
+										if (infoMarker._opts.flag) {
+											// 如果infoMarker已经在地图上，则隐藏它
+											infoMarker.setMap(null);
+											infoMarker._opts.flag = false;
+										} else {
+											// 如果infoMarker不在地图上，则显示它
+											infoMarker.setMap(map);
+											infoMarker._opts.flag = true;
+										}
+									}
+								});
+							}
+							// 如果持续时间大于1秒，则执行操作2
+							else if (duration > 500) {
+								console.log("go-userId" + data.userId);
+								var eventUser = parseInt(data.userId);
+								GoUser(data.userId);
+							}
+						});
+						context.marker.setOffset(new AMap.Pixel(0, -10));
+						// console.log('context normal: ', context)
+						console.log(data.gid);
+						infoMarkers.forEach(function(infoMarker) {
+							if (infoMarker._opts.eventID == data.gid) {
+								if (infoMarker._opts.flag) {
+									infoMarker.setMap(map); // 将标记点设置到地图上
+								}
+							}
+						});
+					});
+				}
+
+				const _renderClusterMarker = function(context) {
+					var Content = '<div class="info-marker-cluster">';
+					var i = 1; // 初始化序号
+					context.clusterData.forEach(function(data) {
+						// 根据数据类型添加不同样式的标题，并添加序号
+						var titleClass = '';
+						var titleContent = data.title; // 标题内容
+
+						// 截取标题内容为前8个字符
+						if (titleContent.length > 8) {
+							titleContent = titleContent.substring(0, 6) + '...';
+						}
+						switch (data.type) {
+							case '求助':
+								titleClass = 'cluster_title_volunteer';
+								break;
+							case '公益':
+								titleClass = 'cluster_title_help';
+								break;
+							default:
+								titleClass = 'cluster_title_academic';
+						}
+
+						// 添加序号的包装元素，并赋予背景颜色和内边距
+						var titlePrefix =
+							'<span class="marker-index" style="background-color: #c4effa; padding: 2px 5px; margin-right: 5px; border-radius: 50%; font-family: 华文中宋;">' +
+							i + '</span>';
+						var type =
+							'<span class="marker-index" style="background-color: #beeff6; padding: 2px 5px; margin-right: 5px; border-radius: 10%; font-family: 华文细黑;">' +
+							data.type + '</span>';
+
+
+						// 拼接带序号的标题
+						Content += '<p style="margin-bottom:2px" class="' + titleClass + '">' + titlePrefix + type + titleContent + '</p>';
+						i++; // 递增序号
+
+   infoMarkers.forEach(function (infoMarker) {
+            if (infoMarker._opts.eventID == data.gid) {
+              infoMarker.setMap(null); // 将标记点设置到地图上
+            }
+          });
+
+					});
+					Content += '</div>';
+					context.marker.setContent(Content);
+					// console.log(context.clusterData);
+
+
+
+        context.marker.on('touchend', ev => {
+          console.log('Cluster touched! Total markers:', context.count);
+          var gids = [];
+          for (var i = 0; i < context.clusterData.length; i++) {
+            var gid = context.clusterData[i].gid;
+            console.log(context.clusterData[i].gid);
+            gids.push(gid);
+          }
+          console.log(JSON.stringify(gids)) ;
+		  GoMany(gids);
+		  
+        });
+				};
+
+				var cluster = new AMap.MarkerCluster(map, eventData, {
+					gridSize: 0, // 聚合网格像素大小
+					renderClusterMarker: _renderClusterMarker, // 自定义聚合点样式
+					renderMarker: _renderMarker, // 自定义非聚合点样式
+				});
+
+			}
+
+			function locateUser() {
+				var LngLat = [114.371713, 30.542335];
+				var iconmarkerContent;
+				iconmarkerContent = '<div class="custom-marker">' +
+					'   <img src="https://tupian.qqw21.com/article/UploadPic/2020-3/20203162351455618.jpg" class="avatar-background-help" >' +
+					// 发送请求获取用户头像URL
+					'   <img src="https://i.postimg.cc/zX2D71Kk/users.png" class="avatar-help">' + // 定位图标
+					'</div>';
+				var iconmarker = new AMap.Marker({
+					position: LngLat,
+					content: iconmarkerContent,
+					clickable: true, //图标可点击
+					offset: new AMap.Pixel(20, -40),
+				});
+				map.add(iconmarker);
+			}
+			customLog('Some other message'); // 这将被记录
+			customLog(
+				'webapi.amap.com/theme/v1.3/markers/b/mark_bs.png:1 GET file://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png net::ERR_FILE_NOT_FOUND'
+				); // 这将被忽略
+			function customLog(message) {
+				if (!message.includes('webapi.amap.com/theme/v1.3/markers/b/mark_bs.png')) {
+					console.log(message);
+				}
+			}
+		</script>
+		<script type="text/javascript" src="https://gitee.com/dcloud/uni-app/raw/dev/dist/uni.webview.1.5.4.js">
+		</script>
+
+	</body>
+
+</html>

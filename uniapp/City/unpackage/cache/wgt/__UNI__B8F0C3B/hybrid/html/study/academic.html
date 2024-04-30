@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>academic</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://at.alicdn.com/t/c/font_4517146_sk6me7pwoc.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+    <div id="container"></div>
+    <!-- 引入高德地图的JavaScript库，并指定需要的插件 AMap.ToolBar -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ec334f27789fb7c641a7db923e768679&plugin=AMap.ToolBar"></script>
+    <script>
+        GoEvent = (id) => {
+            uni.navigateTo({
+                'url': "/pages/titleContent/titleContent?id=" + id
+            })
+        };
+    </script>
+    <script src="https://webapi.amap.com/ui/1.1/main.js"></script>
+    <script>
+        var map;
+        function mapinit() {
+            // 确保 AMap 对象已经加载
+            if (window.AMap) {
+                // 初始化地图
+                map = new AMap.Map('container', {
+                    zoom: 15,
+                    minZoom: 13, // 设置地图允许的最小缩放级别为 13
+                    maxZoom: 20, // 设置地图允许的最大缩放级别为 20
+                    center: [114.371713, 30.542335],
+                    resizeEnable: true,
+                    mapStyle: "amap://styles/macaron" // 地图样式
+                });
+
+                // 添加工具条控件，包括缩放和指南针功能
+                map.addControl(new AMap.ToolBar({ // 添加工具条控件
+                    position: {
+                        right: '11%',
+                        top: '23%'
+                    },
+                    visible: true // 控件初始是否显示
+                }));
+
+                // 确保地图加载完成后再添加缩放控件
+                AMap.plugin('AMap.ControlBar', function () {
+                    // 添加缩放控件到地图的右上角
+                    map.addControl(new AMap.ControlBar({
+                        position: {
+                            right: '3%',
+                            top: '10%',
+                        }
+                    }));
+
+                });
+            } else {
+                console.error('AMap library is not loaded properly.');
+            }
+        }
+    </script>
+    <script>
+        const dataAcademic = {}
+        Object.defineProperty(dataAcademic, 'property', {
+            get: function () {
+                console.log('Getting property value');
+                return this._property;
+            },
+            set: function (value) {
+                console.log('Setting property value to ' + value);
+                this._property = value;
+                loadAcademic(value);
+            }
+        });
+    </script>
+    <script>
+        mapinit();        
+        function loadAcademic(value) {
+            var markers = [];
+            var infoMarkers = [];
+            var dataStudy = value;
+            // var dataStudy = JSON.parse(value);//获取eventData
+            dataStudy.list.forEach(function (data) {
+                var coordinates = [data.locationX, data.locationY];
+                var markerContent;
+                // var imageURL = data.publisher.userImage;
+                // var userimageURL = "https://tupian.qqw21.com/article/UploadPic/2019-10/201910222042666099.jpg";//用户头像图标
+                // console.log(userimageURL);
+                // 假设 data.tags 是一个数组，我们首先将其转换为 JSON 字符串
+                var tagsString = JSON.stringify(data.tag);
+
+                // 然后我们需要将这个 JSON 字符串解析回数组
+                var tagsArray = JSON.parse(tagsString);
+
+                var EyeTitle;
+                if (tagsArray.includes("学术论坛")) {
+                    EyeTitle = "学术论坛";
+                    markerContent = '<div class="custom-marker">' +
+                        '<svg class="icon forum-icon" aria-hidden="true">' +
+                        '<use xlink:href="#icon-zhuanjiajiangzuo"></use>' +
+                        '</svg></div>';
+                }
+                else if (tagsArray.includes("大创")) {
+                    EyeTitle = "大创";
+                    markerContent = '<div class="custom-marker">' +
+                        '<svg class="icon create-icon" aria-hidden="true">' +
+                        '<use xlink:href="#icon-chuangxin"></use>' +
+                        '</svg></div>';
+                }
+                else if (tagsArray.includes("计算机设计大赛")) {
+                    EyeTitle = "计算机设计大赛";
+                    markerContent = '<div class="custom-marker">' +
+                        '<svg class="icon computer-icon" aria-hidden="true">' +
+                        '<use xlink:href="#icon-biancheng"></use>' +
+                        '</svg></div>';
+                }
+                else if (tagsArray.includes("论文")) {
+                    EyeTitle = "论文";
+                    markerContent = '<div class="custom-marker">' +
+                        '<svg class="icon article-icon" aria-hidden="true">' +
+                        '<use xlink:href="#icon-lunwenhuibian"></use>' +
+                        '</svg></div>';
+                }
+                else if (tagsArray.includes("竞赛")) {
+                    EyeTitle = "竞赛";
+                    markerContent = '<div class="custom-marker">' +
+                        '<svg class="icon article-icon" aria-hidden="true">' +
+                        '<use xlink:href="#icon-jingsaiwenti"></use>' +
+                        '</svg></div>';
+                }
+                else {
+                    EyeTitle = "学术活动";
+                    markerContent = '<div class="custom-marker">' +
+                        '<svg class="icon else-icon" aria-hidden="true">' +
+                        '<use xlink:href="#icon-yanjiu"></use>' +
+                        '</svg></div>';
+                }
+
+
+
+                var marker = new AMap.Marker({
+                    position: coordinates,
+                    content: markerContent,
+                    clickable: true,//图标可点击
+                    offset: new AMap.Pixel(0, 0),
+                    eventID: data.gid,
+                    eventUser: data.userId,
+                    eventType: data.type,
+                    eventTime: data.timestamp,
+                    eventTitle: data.title,
+                    eventContent: data.content,
+                    eventImageList: data.images,
+                    eventPayment: data.payment,
+                    eventDeadline: data.deadline,
+                    eventParticipantList: data.participantList,
+                    eventLike: data.like
+                });
+
+                var infoMarkerContent;
+                // 创建信息框的内容
+                var truncatedContent = data.content.length > 10 ? data.content.substring(0, 10) + '...' : data.content;
+                infoMarkerContent = '<div class="info-marker">';
+                infoMarkerContent += '<div class="info-left-container">';
+                infoMarkerContent += '<div class="info-title-container">';
+                infoMarkerContent += '<span class="Eyetitle">' + EyeTitle + ": " + '</span>' +
+                    '<p class="event_title">' + data.title + '</p>'; // 合并成一行，并保持在同一行
+                infoMarkerContent += '</div>';
+                infoMarkerContent += '<div class="info-text">';
+                infoMarkerContent += '<p>' + truncatedContent + '</p>';
+                infoMarkerContent += '</div>';
+                infoMarkerContent += '</div>'; // 左侧容器结束
+                infoMarkerContent += '<div class="info-right-container">';
+                infoMarkerContent += '<svg class="icon time-icon" aria-hidden="true">';
+                infoMarkerContent += '<use xlink:href="#icon-daojishi1"></use>';
+                infoMarkerContent += '</svg>';
+                // 添加倒计时到信息框中
+                infoMarkerContent += '<p id="' + data.gid + '" class="countdown-time" ></p>';
+                infoMarkerContent += '</div>';
+
+
+
+
+                // 计算倒计时并更新显示
+                var endTime = new Date('2024/4/28');  // 获取目标的日期值为：2024/4/11 00:00:00;
+                setInterval(function () {
+                    var now = new Date(); // 获取当前时间
+                    var diff = endTime.getTime() - now.getTime(); // 获取距离目标时间的毫秒数
+                    diff = parseInt(diff / 1000); // 转换成秒数
+                    var days = parseInt(diff / (24 * 3600)); // 获取天数
+                    var hours = parseInt(diff % (24 * 3600) / 3600); // 获取小时
+                    var minutes = parseInt(diff % 3600 / 60); // 获取分钟
+                    var seconds = diff % 60; // 获取秒数
+
+                    // 格式化显示倒计时
+                    var countdownTime = formatTwoDigits(days) + ":" + formatTwoDigits(hours) + ":" + formatTwoDigits(minutes) + ":" + formatTwoDigits(seconds);
+                    // 更新倒计时显示
+                    document.getElementById(data.gid).textContent = countdownTime;
+                }, 1000); // 刷新间隔为1秒
+
+                // 格式化数字为两位数
+                function formatTwoDigits(num) {
+                    return num < 10 ? "0" + num : num;
+                }
+                // 信息框内容结束
+                infoMarkerContent += '</div>'; // 信息框结束    
+                // 创建信息框的标记，并添加到地图中
+                var infoMarker = new AMap.Marker({
+                    position: coordinates,
+                    content: infoMarkerContent,
+                    offset: new AMap.Pixel(30, -10), // 位置偏移以显示在原标记上方
+                    eventID: data.gid,
+                    zIndex: 1000, // 确保信息框在顶层
+                    clickable: true, // 使信息框不可点击
+                    relatedMarker: marker, // 将 marker 关联到 infoMarker 的自定义属性 relatedMarker 中
+                    flag: true,//记录infomarker的显示情况
+                });
+
+                infoMarker.flag = true;
+                infoMarkers.push(infoMarker);
+                // 将原标记的标记添加到地图中
+
+                infoMarker.relatedMarker = marker;
+                marker.infoMarker = infoMarker;
+                markers.push(marker);
+                console.log(markers);
+                marker.on('touchstart', function (e) {
+                    startTime = new Date().getTime(); // 记录触摸开始时间
+                });
+
+                marker.on('touchend', function (e) {
+                    var endTime = new Date().getTime(); // 记录触摸结束时间
+                    var duration = endTime - startTime; // 计算触摸持续时间
+                    var marker = e.target;
+                    var infoMarker = marker.infoMarker;
+                    var flag = infoMarker.flag;
+
+
+                    // 如果持续时间小于0.1秒，则执行操作1
+                    if (duration > 500) {
+                        // 执行操作1
+                        console.log("收起信息框" + marker._opts.eventID);
+
+                        if (flag) {
+                            // 如果infoMarker已经在地图上，则隐藏它
+                            infoMarker.setMap(null);
+                            infoMarker.flag = false;
+                        } else {
+                            // 如果infoMarker不在地图上，则显示它
+                            infoMarker.setMap(map);
+                            infoMarker.flag = true;
+                        }
+                    }
+                    // 如果持续时间大于1秒，则执行操作2
+                    else if (duration < 100) {
+                        var marker = e.target;
+                        var eventEvent = parseInt(marker._opts.eventUser);
+                        GoEvent(eventEvent);
+                        console.log("go-event" + marker._opts.eventID);
+                    }
+                });
+            });
+            map.add(markers);
+            map.add(infoMarkers);
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+export default {}
+
+function GenPagesDemo1Demo1Render(): any | null {
+const _ctx = this
+const _cache = this.$.renderCache
+  return createElementVNode("view", utsMapOf({
+    class: "class1",
+    "hover-class": "class2"
+  }), [
+    createElementVNode("image", utsMapOf({
+      src: "/static/logo.png",
+      class: "image1"
+    }))
+  ])
+}
+const GenPagesDemo1Demo1Styles = [utsMapOf([["class1", padStyleMapOf(utsMapOf([["backgroundColor", "#4affcc"], ["width", "100%"], ["height", "100%"], ["transitionDuration", "0.3s"]]))], ["class2", padStyleMapOf(utsMapOf([["backgroundColor", "#ffffff"]]))], ["image1", padStyleMapOf(utsMapOf([["width", 100], ["height", 100]]))], ["@TRANSITION", utsMapOf([["class1", utsMapOf([["duration", "0.3s"]])]])]])]

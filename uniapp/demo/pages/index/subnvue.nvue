@@ -1,0 +1,86 @@
+<template>
+	<view class="subnvue" :style="{ paddingTop: StatusBar + 13 + 'rpx' }">
+		<view class="subnvue-box">
+			<view class="subnvue-box-left"><img @click="goBack" class="arrow" src="./../../static/1.png" alt="" /></view>
+			<view class="subnvue-box-center"><text class="title">课程详情</text></view>
+			<view class="subnvue-box-right"><img @click="share" class="share" src="./../../static/2.png" alt="" /></view>
+		</view>
+	</view>
+</template>
+<script>
+export default {
+	data() {
+		return {
+			StatusBar: getApp().StatusBar
+		};
+	},
+
+	methods: {
+		share(){
+			uni.$emit('openShare', {
+			    type:1
+			
+			});
+
+		},
+		goBack() {
+			uni.showToast({
+				title: '点击了返回按钮',
+				mask: true,
+				duration: 1500
+			});
+		}
+	}
+};
+</script>
+
+<style>
+.subnvue {
+	width: 750rpx;
+	background-color: #fff;
+}
+.subnvue-box {
+	width: 750rpx;
+	height: 88rpx;
+	display: flex;
+	flex-direction: row;
+	padding: 0 24rpx;
+	box-sizing: border-box;
+}
+.subnvue-box-left {
+	width: 100rpx;
+	height: 88rpx;
+	display: flex;
+	justify-content: center;
+
+}
+.arrow {
+	width: 21rpx;
+	height: 32rpx;
+}
+.subnvue-box-center {
+	flex: 1;
+	height: 88rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.title {
+	font-size: 32rpx;
+	font-weight: 600;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.subnvue-box-right {
+	width: 100rpx;
+	height: 88rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+
+}
+.share {
+	width: 36rpx;
+	height: 36rpx;
+}
+</style>
